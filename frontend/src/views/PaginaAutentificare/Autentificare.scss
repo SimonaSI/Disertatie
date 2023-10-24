@@ -1,0 +1,32 @@
+   .container{
+    background-color: rgb(228, 80, 21);
+    width: 100%;
+    height: 100%;
+
+   
+   .formular{
+        background-color: bisque;
+        padding: 20px;
+
+        .formular-butoane{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 1px;
+            padding: 1px;
+
+
+            .buton{
+                background-color: bisque;
+                width: 100%;
+                border-color: bisque;
+
+            }
+
+            .buton:hover{
+                background-color: antiquewhite;
+            }
+        }
+
+    }
+}
