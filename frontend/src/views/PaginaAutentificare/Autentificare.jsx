@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Autentificare.scss"
+import key from '../images/key.png';
+import user from '../images/user.png';
+import budget from '../images/template.jpg';
+import "./Autentificare.scss";
 
 const Autentificare = () => {
     const [formData, setFormData] = useState({
@@ -43,9 +46,10 @@ const Autentificare = () => {
     };
 
     return (
-        <Container className="container d-flex flex-row justify-content-between align-items-center">
-            <Row className='rows d-flex flex-row align-items-center'>
-                <Col className='formular d-flex flex-column justify-content-between align-items-center' md={6}>
+                
+        <Container style={{backgroundImage:`url(${budget})`,backgroundRepeat:"no-repeat",backgroundSize:"contain"}} className="container d-flex justify-content-start align-items-center">
+            <Row className='row d-flex justify-content-center align-items-center'>
+                <Col className='formular d-flex flex-column justify-content-between align-items-center'>
                     <div className="formular-butoane d-flex flex-row justify-content-between align-items-center">
                         <Button className="buton" onClick={handleShowLoginForm}>
                             Autentificare
@@ -56,12 +60,11 @@ const Autentificare = () => {
                     </div>
 
                     {showLoginForm && (
-                        <Form className="formular2 mt-4" onSubmit={handleLogin}>
+                        <Form className="formular2" onSubmit={handleLogin}>
 
-                            <Form.Group className='camp d-flex flex-row justify-content-between align-items-center' controlId="formEmailLogin">
-                                <Col className='d-flex flex-row justify-content-between align-items-center'>
-                                    <Image className='camp1 p-2' src="images/user.png" />
-                                    <Form.Control className='camp2 p-2'
+                            <Form.Group className='camp d-flex flex-row justify-content-between align-items-center mb-2' controlId="formEmailLogin">
+                                    <Image className='camp1 p-2' src={user}/>
+                                    <Form.Control className='camp2'
                                         type="email"
                                         placeholder="Introdu adresa de email"
                                         required
@@ -69,13 +72,11 @@ const Autentificare = () => {
                                         value={formData.email} // Adaugă value pentru a sincroniza cu starea formData
                                         onChange={handleInputChange}
                                     />
-                                </Col>
                             </Form.Group>
 
-                            <Form.Group className='camp d-flex flex-row justify-content-between align-items-center' controlId="formPasswordLogin">
-                                <Col className='d-flex flex-row justify-content-between align-items-center'>
-                                    <Image className='camp1 p-2' src="images/key.png" />
-                                    <Form.Control className='camp2 p-2'
+                            <Form.Group className='camp d-flex flex-row justify-content-between align-items-center mt-2' controlId="formPasswordLogin">
+                                    <Image className='camp1 p-2' src={key} />
+                                    <Form.Control className='camp2'
                                         type="password"
                                         placeholder="Introdu parola"
                                         required
@@ -83,7 +84,6 @@ const Autentificare = () => {
                                         value={formData.password} // Adaugă value pentru a sincroniza cu starea formData
                                         onChange={handleInputChange}
                                     />
-                                </Col>
                             </Form.Group>
 
                             <Button className='buton2'>
@@ -93,7 +93,7 @@ const Autentificare = () => {
                     )}
 
                     {showCreateForm && (
-                        <Form className="formular2 mt-4" onSubmit={handleCreateAccount}>
+                        <Form className="formular2" onSubmit={handleCreateAccount}>
                             <Form.Group className='w-100 d-flex flex-row justify-content-between align-items-center m-2' controlId="formFirstName">
                                 <Form.Control className='d-flex flex-row justify-content-between align-items-center'
                                     type="text"
@@ -149,7 +149,7 @@ const Autentificare = () => {
                                 />
                             </Form.Group>
 
-                            <div className="w-100 h-10 d-flex flex-row justify-content-center align-items-center m-2">
+                            <div className="w-100 h-20 d-flex flex-row justify-content-center align-items-center m-2">
                                 <Button className="buton4" onClick={handleShowLoginForm}>
                                     Anulează
                                 </Button>
@@ -160,10 +160,6 @@ const Autentificare = () => {
                         </Form>
                     )}
                 </Col>
-            </Row>
-
-            <Row className='rows d-flex flex-row align-items-center'>
-                <Image className='poza p-2' src="./images/buget.png" />
             </Row>
         </Container>
     );

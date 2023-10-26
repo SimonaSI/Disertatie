@@ -1,20 +1,19 @@
    .container {
-       background-color: rgb(228, 80, 21);
-       width: 90vw;
-       height: 93vh;
-       margin-top: 20px;
-       margin-bottom: 20px;
+       width: 100vw;
+       height: 100vh;
 
        .row {
-           width: 80%;
-           height: 80%;
-           padding: 20px;
+           width: 30vw;
+           height: 60vh;
 
            .formular {
-               background-color: bisque;
+               background-color: rgba(252, 234, 220, 0.8);
                padding: 20px;
                width: 100%;
                height: 100%;
+               border: 2px solid;
+               border-radius: 15px;
+               border-color: #cfbdbd;
 
                .formular2 {
                    width: 100%;
@@ -24,21 +23,31 @@
                    align-items: center;
                    padding: 5px;
                    margin: 5px;
+                   
+                   
 
                    .camp {
                        width: 100%;
-                       height: 10%;
-                       padding: 5px;
-                       margin: 5px;
+                       height: 15%;
+                       background-color: white;
+                       margin: 4px;
+                       
+                       border-radius: 10px;
+                       border: 1px groove;
+                       border-color: #cfbdbd;
 
                        .camp1 {
                            width: 15%;
                            height: 100%;
+                           border-right: 1px groove;
+                           border-color: #cfbdbd;
+
                        }
 
                        .camp2 {
                            width: 85%;
                            height: 100%;
+                           border: none;
                        }
                    }
 
@@ -48,14 +57,16 @@
                        justify-content: center;
                        align-items: center;
                        width: 50%;
-                       height: 10%;
-                       background-color: rgb(240, 147, 33);
+                       height: 13%;
+                       background-color: #c0d8a7;
                        border-color: white;
                        margin: 2px;
+                       font-size: large;
+
                    }
 
                    .buton2:hover {
-                       background-color: rgb(161, 105, 31);
+                       background-color: #a3bb8b;
                    }
                }
 
@@ -66,11 +77,15 @@
                    padding: 1px;
 
                    .buton {
-                       background-color: bisque;
+                       background-color: rgb(252, 222, 200);
                        width: 100%;
                        height: 100%;
                        border-color: white;
                        margin: 2px;
+                       display: flex;
+                       justify-content: center;
+                       align-items: center;
+                       font-size: large;
                    }
 
                    .buton:hover {
@@ -82,12 +97,12 @@
                    }
                }
 
-               .buton4{
+               .buton4 {
                    width: 50%;
                    height: 100%;
                    margin: 1px;
                    padding: 1px;
-                   background-color: rgb(247, 191, 174);
+                   background-color: #fd755f;
                    border-color: white;
                }
 
@@ -96,16 +111,19 @@
                    height: 100%;
                    margin: 1px;
                    padding: 1px;
-                   background-color: rgb(161, 241, 114);
+                   background-color: #c0d8a7;
                    border-color: white;
 
                }
 
-           }
+               .buton3:hover {
+                background-color: #a3bb8b;
+            }
 
-           .poza {
-               width: 100%;
-               height: 100%;
+            .buton4:hover {
+                background-color: #f8614a;
+            }
+
            }
        }
    }
