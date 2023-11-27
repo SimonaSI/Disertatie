@@ -1,4 +1,245 @@
-.ceva {
-    width: 40px;
-    height: 40px;
+.container-pp{
+    width: 100%;
+    height: 80%;
 }
+
+.ed-container {
+    background-color: #c0d8a9;
+}
+
+.btn-ed {
+    background-color: #fc755e;
+    border: #fc755e;
+}
+
+.btn-ed:hover{
+    background-color: #e96c55;
+}
+
+.btn-ed:active{
+    background-color: #e96c55;
+}
+
+.secti {
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+}
+
+.img-secti{
+    width: 40%;
+    margin-right: 10px;
+}
+
+
+.img-secti-poza{
+    width: 100%;
+}
+
+.text-secti{
+    width: 55%;
+}
+
+.card-container {
+    display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px; /* Spațiu între card-uri */
+}
+
+.card-intrebari {
+    background-color: #f7ddcb;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .intrebare {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .card-intrebari p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+
+  /* Container pentru card-uri */
+.challenges-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
+    margin: 20px;
+  }
+  
+  /* Stilul card-urilor */
+  .challenge-card {
+    position: relative;
+  background-color: rgba(247, 221, 203, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  }
+  
+  .challenge-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .challenge-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+  }
+  
+  .challenge-card p {
+    position: relative;
+  z-index: 1;
+  font-size: 16px;
+  color: #2c2c2c;
+  line-height: 1.5;
+  }
+
+
+  .challenge-checkbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+
+  .challenge-card[data-image="chal1"]::before {
+    background-image: url('../images/chal1.jpg');
+  }
+
+  .challenge-card[data-image="chal2"]::before {
+    background-image: url('../images/chal2.jpeg');
+  }
+
+
+  .challenge-card[data-image="chal3"]::before {
+    background-image: url('../images/chal3.jpeg');
+  }
+
+  .challenge-card[data-image="chal4"]::before {
+    background-image: url('../images/chal4.jpg');
+  }
+
+  .challenge-card[data-image="chal5"]::before {
+    background-image: url('../images/chal5.png');
+  }
+
+  .challenge-card[data-image="chal6"]::before {
+    background-image: url('../images/chal6.jpeg');
+  }
+
+  .challenge-card[data-image="chal7"]::before {
+    background-image: url('../images/chal7.jpg');
+  }
+
+  .challenge-card[data-image="chal8"]::before {
+    background-image: url('../images/chal8.jpg');
+  }
+
+  .challenge-card[data-image="chal9"]::before {
+    background-image: url('../images/chal9.jpg');
+  }
+
+  .challenge-card[data-image="chal10"]::before {
+    background-image: url('../images/chal10.jpg');
+  }
+
+  .challenge-card[data-image="chal11"]::before {
+    background-image: url('../images/chal11.jpeg');
+  }
+
+  .challenge-card[data-image="chal12"]::before {
+    background-image: url('../images/chal12.jpg');
+  }
+
+  .challenge-card[data-image="chal13"]::before {
+    background-image: url('../images/chal13.jpg');
+  }
+
+  .challenge-card[data-image="chal14"]::before {
+    background-image: url('../images/chal14.png');
+  }
+
+  .challenge-card[data-image="chal15"]::before {
+    background-image: url('../images/chal15.jpg');
+  }
+
+  .challenge-card[data-image="chal16"]::before {
+    background-image: url('../images/chal16.jpg');
+  }
+
+  .challenge-card[data-image="chal17"]::before {
+    background-image: url('../images/chal17.jpeg');
+  }
+
+  .challenge-card[data-image="chal18"]::before {
+    background-image: url('../images/chal18.jpg');
+  }
+
+  .challenge-card[data-image="chal19"]::before {
+    background-image: url('../images/chal19.jpg');
+  }
+
+  .challenge-card[data-image="chal20"]::before {
+    background-image: url('../images/chal20.jpg');
+  }
+
+  .challenge-card[data-image="chal21"]::before {
+    background-image: url('../images/chal21.jpg');
+  }
+
+  .challenge-card[data-image="chal22"]::before {
+    background-image: url('../images/chal22.jpg');
+  }
+
+  .challenge-card[data-image="chal23"]::before {
+    background-image: url('../images/chal23.jpg');
+  }
+
+  .challenge-card[data-image="chal24"]::before {
+    background-image: url('../images/chal24.jpg');
+  }
+
+  .challenge-card[data-image="chal25"]::before {
+    background-image: url('../images/chal25.jpg');
+  }
+
+  .challenge-card[data-image="chal26"]::before {
+    background-image: url('../images/chal26.jpeg');
+  }
+
+  .challenge-card[data-image="chal27"]::before {
+    background-image: url('../images/chal27.jpg');
+  }
+
+  .challenge-card[data-image="chal28"]::before {
+    background-image: url('../images/chal28.jpg');
+  }
+
+  .challenge-card[data-image="chal29"]::before {
+    background-image: url('../images/chal29.png');
+  }
+
+  .challenge-card[data-image="chal30"]::before {
+    background-image: url('../images/chal30.jpeg');
+  }
+
+  .challenge-card[data-image="chal31"]::before {
+    background-image: url('../images/chal31.png');
+  }
+

@@ -4,5 +4,6 @@ export const routes = {
     pagDatorii:"datorii",
     pagEducatieFinanciara:"educatie-financiara",
     pagVenit:"venit",
-    pagOverview:"home"
+    pagOverview:"home",
+    pagMetadata:"metadata"
   };

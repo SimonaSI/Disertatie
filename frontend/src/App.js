@@ -13,6 +13,7 @@ import Datorii from './views/PaginaDatorii/Datorii';
 import EducatieFinanciara from './views/PaginaEducatieFinanciara/EducatieFinanciara';
 import Overview from './views/PaginaOverview/Overview';
 import Venit from './views/PaginaVenit/Venit';
+import Metadata from './views/Metadata/Metadata';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path={routes.pagEducatieFinanciara} element={<EducatieFinanciara />} />
         <Route path={routes.pagOverview} element={<Overview />} />
         <Route path={routes.pagVenit} element={<Venit />} />
+        <Route path={routes.pagMetadata} element={<Metadata />} />
       </Routes>
     </div>
   );

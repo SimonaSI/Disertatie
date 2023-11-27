@@ -5,121 +5,124 @@ import { toast } from 'react-toastify';
 import { routes } from "../../Utils/appRoutes";
 
 const Meniu = () => {
-console.log("hello")
+  const location = useLocation();
+  const pageRoute = location.pathname;
+  const navigate = useNavigate();
 
-    const location = useLocation();
-  
-    const activeLinkColor = { color: "#ff6122" },
-      inactiveLinkColor = { color: "#000000" };
-    const pageRoute = location.pathname;
-    const navigate = useNavigate();
-  
-    const handleLogout = () => {
-      localStorage.removeItem("jwt");
-      navigate(routes.autentificare);
-      toast.success("V-ati delogat cu succes!", { toastId: "sdkhfsjkdd" });
-    };
-  
-    const handleHighlightLinkItem = (linkID) => {
-      switch (linkID) {
-        case routes.pagCheltuieli:
-          if (pageRoute === routes.pagCheltuieli) {
-            return activeLinkColor;
-          } else {
-            return inactiveLinkColor;
-          }
-  
-        case routes.pagDatorii:
-          if (pageRoute === routes.pagDatorii) {
-            return activeLinkColor;
-          } else {
-            return inactiveLinkColor;
-          }
-  
-        case routes.pagEducatieFinanciara:
-          if (pageRoute === routes.pagEducatieFinanciara) {
-            return activeLinkColor;
-          } else {
-            return inactiveLinkColor;
-          }
-        case routes.pagVenit:
-          if (pageRoute === routes.pagVenit) {
-            return activeLinkColor;
-          } else {
-            return inactiveLinkColor;
-          }
-        case routes.pagOverview:
-          if (pageRoute === routes.pagOverview) {
-            return activeLinkColor;
-          } else {
-            return inactiveLinkColor;
-          }
-  
-        default:
-          return inactiveLinkColor;
-      }
-    };
-  
-    return (
-      <nav className="container-nav">
-        <div className="NavBar">
-          <div className="container-main">
-            <div className="navigation w-100 d-flex flex-row justify-content-around align-items-center">
-              <div className="flex-row w-100 justify-content-around align-items-center navigation-menu">
-                <div>
-                  <NavLink
-                    style={handleHighlightLinkItem(routes.pagCheltuieli)}
-                    to={routes.pagCheltuieli}
-                    className="nav-item font-size-16 font-pnr"
-                  >
-                    Cheltuieli
-                  </NavLink>
-                </div>
-  
-                <div>
-                  <NavLink
-                    style={handleHighlightLinkItem(routes.pagDatorii)}
-                    to={routes.pagDatorii}
-                    className="nav-item font-size-16 font-pnr"
-                  >
-                    Datorii
-                  </NavLink>
-                </div>
-  
-                <div>
-                  <NavLink
-                    style={handleHighlightLinkItem(routes.pagEducatieFinanciara)}
-                    to={routes.pagEducatieFinanciara}
-                    className="nav-item font-size-16 font-pnr"
-                  >
-                    Educatie Finanicara
-                  </NavLink>
-                </div>
-                <div>
-                  <NavLink
-                    style={handleHighlightLinkItem(routes.pagVenit)}
-                    to={routes.pagVenit}
-                    className="nav-item font-size-16 font-pnr"
-                  >
-                    Venit
-                  </NavLink>
-                </div>
-                <div>
-                  <NavLink
-                    style={handleHighlightLinkItem(routes.pagOverview)}
-                    to={routes.pagOverview}
-                    className="nav-item font-size-16 font-pnr"
-                  >
-                    Acasa
-                  </NavLink>
-                </div>
-                <button onClick={() => handleLogout()}>Logout</button>
+  const activeLinkColor = { color: "#ff6122" },
+    inactiveLinkColor = { color: "#000000" };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    navigate(routes.autentificare);
+    toast.success("V-ati delogat cu succes!", { toastId: "sdkhfsjkdd" });
+  };
+
+  const handleHighlightLinkItem = (linkID) => {
+    switch (linkID) {
+      case routes.pagCheltuieli:
+        return pageRoute === routes.pagCheltuieli ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagDatorii:
+        return pageRoute === routes.pagDatorii ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagEducatieFinanciara:
+        return pageRoute === routes.pagEducatieFinanciara ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagVenit:
+        return pageRoute === routes.pagVenit ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagOverview:
+        return pageRoute === routes.pagOverview ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagMetadata:
+        return pageRoute === routes.pagMetadata ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      default:
+        return `${inactiveLinkColor} delimitator`;
+    }
+  };
+
+  return (
+    <nav className="container-nav">
+      <div>
+        <div>
+          <div className="w-100 d-flex flex-row justify-content-around align-items-center">
+            <div className="d-flex flex-row w-100 justify-content-around align-items-center">
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagCheltuieli)}
+                  to={routes.pagCheltuieli}
+                >
+                  Cheltuieli
+                </NavLink>
               </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagDatorii)}
+                  to={routes.pagDatorii}
+                >
+                  Datorii
+                </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagEducatieFinanciara)}
+                  to={routes.pagEducatieFinanciara}
+                >
+                  Educatie Financiara
+                </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagVenit)}
+                  to={routes.pagVenit}
+                >
+                  Venit
+                </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagOverview)}
+                  to={routes.pagOverview}
+                >
+                  Acasa
+                </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagMetadata)}
+                  to={routes.pagMetadata}
+                  
+                >
+                  Metadata
+                </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <button onClick={() => handleLogout()}>Logout</button>
             </div>
           </div>
         </div>
-      </nav>
-    );
-  };
-  
-  export default Meniu;
+      </div>
+    </nav>
+  );
+};
+
+export default Meniu;
