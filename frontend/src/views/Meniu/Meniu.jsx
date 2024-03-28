@@ -20,6 +20,16 @@ const Meniu = () => {
 
   const handleHighlightLinkItem = (linkID) => {
     switch (linkID) {
+
+      case routes.pagOverview:
+        return pageRoute === routes.pagOverview ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagMetadata:
+        return pageRoute === routes.pagMetadata ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
+      case routes.pagVenit:
+        return pageRoute === routes.pagVenit ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+
       case routes.pagCheltuieli:
         return pageRoute === routes.pagCheltuieli ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
 
@@ -29,14 +39,7 @@ const Meniu = () => {
       case routes.pagEducatieFinanciara:
         return pageRoute === routes.pagEducatieFinanciara ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
 
-      case routes.pagVenit:
-        return pageRoute === routes.pagVenit ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
 
-      case routes.pagOverview:
-        return pageRoute === routes.pagOverview ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
-
-      case routes.pagMetadata:
-        return pageRoute === routes.pagMetadata ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
 
       default:
         return `${inactiveLinkColor} delimitator`;
@@ -51,10 +54,10 @@ const Meniu = () => {
             <div className="d-flex flex-row w-100 justify-content-around align-items-center">
               <div className="nav-item d-flex justify-content-around align-items-center">
                 <NavLink
-                  className={handleHighlightLinkItem(routes.pagCheltuieli)}
-                  to={routes.pagCheltuieli}
+                  className={handleHighlightLinkItem(routes.pagOverview)}
+                  to={routes.pagOverview}
                 >
-                  Cheltuieli
+                  Acasa
                 </NavLink>
               </div>
 
@@ -62,21 +65,10 @@ const Meniu = () => {
 
               <div className="nav-item d-flex justify-content-around align-items-center">
                 <NavLink
-                  className={handleHighlightLinkItem(routes.pagDatorii)}
-                  to={routes.pagDatorii}
+                  className={handleHighlightLinkItem(routes.pagMetadata)}
+                  to={routes.pagMetadata}
                 >
-                  Datorii
-                </NavLink>
-              </div>
-
-              <span className="delimitator">|</span>
-
-              <div className="nav-item d-flex justify-content-around align-items-center">
-                <NavLink
-                  className={handleHighlightLinkItem(routes.pagEducatieFinanciara)}
-                  to={routes.pagEducatieFinanciara}
-                >
-                  Educatie Financiara
+                  Metadata
                 </NavLink>
               </div>
 
@@ -95,10 +87,11 @@ const Meniu = () => {
 
               <div className="nav-item d-flex justify-content-around align-items-center">
                 <NavLink
-                  className={handleHighlightLinkItem(routes.pagOverview)}
-                  to={routes.pagOverview}
+                  className={handleHighlightLinkItem(routes.pagDatorii)}
+                  to={routes.pagDatorii}
+
                 >
-                  Acasa
+                  Datorii
                 </NavLink>
               </div>
 
@@ -106,12 +99,25 @@ const Meniu = () => {
 
               <div className="nav-item d-flex justify-content-around align-items-center">
                 <NavLink
-                  className={handleHighlightLinkItem(routes.pagMetadata)}
-                  to={routes.pagMetadata}
-                  
+                  className={handleHighlightLinkItem(routes.pagCheltuieli)}
+                  to={routes.pagCheltuieli}
                 >
-                  Metadata
+                  Cheltuieli
                 </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+
+
+                <NavLink
+                  className={handleHighlightLinkItem(routes.pagEducatieFinanciara)}
+                  to={routes.pagEducatieFinanciara}
+                >
+                  Educatie Financiara
+                </NavLink>
+
               </div>
 
               <span className="delimitator">|</span>
