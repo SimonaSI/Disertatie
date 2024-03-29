@@ -216,228 +216,292 @@ const EducatieFinanciara = () => {
                 </div>
             )}
             {selectedSection === 'challenges' && (
-                <div class="challenges-container">
-                    <div class="challenge-card" data-image="chal1">
-                    <input type="checkbox" id="challenge1" class="challenge-checkbox"/>
-                    <label for="challenge1"> Provocare 1</label>
-                    <p>Provocare 1</p>
-                        <p>încearcă să nu cheltui mai mult de 20 lei azi.</p>
+                <div className="challenges-container">
+                    <div className="challenge-card" data-image="chal1">
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge1" className="challenge-checkbox" />
+                            <label for="challenge1"> Provocare 1</label>
+                            {/* <p>Provocare 1</p> */}
+                            <p>încearcă să nu cheltui mai mult de 20 lei azi.</p>
+                        </div>
                     </div>
 
-                    <div class="challenge-card" data-image="chal2">
-                    <input type="checkbox" id="challenge2" class="challenge-checkbox"/>
-                    <label for="challenge2"> Provocare 2</label>
-                    <p>Provocare 2</p>
-                        <p>Deschide-ți azi un cont de economii.</p>
+                    <div className="challenge-card" data-image="chal2">
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge2" className="challenge-checkbox" />
+                            <label for="challenge2"> Provocare 2</label>
+                            {/* <p>Provocare 2</p> */}
+                            <p>Deschide-ți azi un cont de economii.</p>
+                        </div>
                     </div>
 
-                    <div class="challenge-card" data-image="chal3">
-                    <input type="checkbox" id="challenge3" class="challenge-checkbox"/>
-                    <label for="challenge3"> Provocare 3</label>
-                    <p>Provocare 3</p>
-                        <p>Alege 3 newslettere promoționale și dă unsubscribe la acestea pentru a te feri de tentații.</p>
+                    <div className="challenge-card" data-image="chal3">
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge3" className="challenge-checkbox" />
+                            <label for="challenge3"> Provocare 3</label>
+                            {/* <p>Provocare 3</p> */}
+                            <p>Alege 3 newslettere promoționale și dă unsubscribe la acestea pentru a te feri de tentații.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal4">
-                    <input type="checkbox" id="challenge4" class="challenge-checkbox"/>
-                    <label for="challenge4"> Provocare 4</label>
-                    <p>Provocare 4</p>
-                        <p>Șterge-ți datele cardului din Google Pay sau de pe site-uri de unde faci shopping regulat pentru a evita cheltuielile impulsive.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge4" class="challenge-checkbox" />
+                            <label for="challenge4"> Provocare 4</label>
+                            {/* <p>Provocare 4</p> */}
+                            <p>Șterge-ți datele cardului din Google Pay sau de pe site-uri de unde faci shopping regulat pentru a evita cheltuielile impulsive.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal5">
-                    <input type="checkbox" id="challenge5" class="challenge-checkbox"/>
-                    <label for="challenge5"> Provocare 5</label>
-                    <p>Provocare 5</p>
-                        <p>Stabileste un obiectiv financiar pentru urmatoarea luna.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge5" class="challenge-checkbox" />
+                            <label for="challenge5"> Provocare 5</label>
+                            {/* <p>Provocare 5</p> */}
+                            <p>Stabileste un obiectiv financiar pentru urmatoarea luna.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal6">
-                    <input type="checkbox" id="challenge6" class="challenge-checkbox"/>
-                    <label for="challenge6"> Provocare 6</label>
-                    <p>Provocare 6</p>
-                        <p>Descarcă o aplicație de administrare a finanțelor personale.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge6" class="challenge-checkbox" />
+                            <label for="challenge6"> Provocare 6</label>
+                            {/* <p>Provocare 6</p> */}
+                            <p>Descarcă o aplicație de administrare a finanțelor personale.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal7">
-                    <input type="checkbox" id="challenge1" class="challenge-checkbox"/>
-                    <label for="challenge7"> Provocare 7</label>
-                    <p>Provocare 7</p>
-                        <p>În loc să ieși în oraș, organizează o seară de board games la tine acasă. </p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge1" class="challenge-checkbox" />
+                            <label for="challenge7"> Provocare 7</label>
+                            {/* <p>Provocare 7</p> */}
+                            <p>În loc să ieși în oraș, organizează o seară de board games la tine acasă. </p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal8">
-                    <input type="checkbox" id="challenge8" class="challenge-checkbox"/>
-                    <label for="challenge8"> Provocare 8</label>
-                    <p>Provocare 8</p>
-                        <p>Înainte să mergi azi la cumpărături, fă-ți o listă clară și respect-o.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge8" class="challenge-checkbox" />
+                            <label for="challenge8"> Provocare 8</label>
+                            {/* <p>Provocare 8</p> */}
+                            <p>Înainte să mergi azi la cumpărături, fă-ți o listă clară și respect-o.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal9">
-                    <input type="checkbox" id="challenge9" class="challenge-checkbox"/>
-                    <label for="challenge9"> Provocare 9</label>
-                    <p>Provocare 9</p>
-                        <p>Ascultă un podcast financiar în timp ce faci îți faci treburile casnice de azi.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge9" class="challenge-checkbox" />
+                            <label for="challenge9"> Provocare 9</label>
+                            {/* <p>Provocare 9</p> */}
+                            <p>Ascultă un podcast financiar în timp ce faci îți faci treburile casnice de azi.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal10">
-                    <input type="checkbox" id="challenge10" class="challenge-checkbox"/>
-                    <label for="challenge10"> Provocare 10</label>
-                    <p>Provocare 10</p>
-                        <p>Notează-ți în calendar zilele în care trebuie să faci plăți pentru a nu fi taxat în plus.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge10" class="challenge-checkbox" />
+                            <label for="challenge10"> Provocare 10</label>
+                            {/* <p>Provocare 10</p> */}
+                            <p>Notează-ți în calendar zilele în care trebuie să faci plăți pentru a nu fi taxat în plus.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal11">
-                    <input type="checkbox" id="challenge11" class="challenge-checkbox"/>
-                    <label for="challenge11"> Provocare 11</label>
-                    <p>Provocare 11</p>
-                        <p>Cand mergi azi la munca, ia-ti mancarea gatita de tine ieri in loc sa comanzi.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge11" class="challenge-checkbox" />
+                            <label for="challenge11"> Provocare 11</label>
+                            {/* <p>Provocare 11</p> */}
+                            <p>Cand mergi azi la munca, ia-ti mancarea gatita de tine ieri in loc sa comanzi.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal12">
-                    <input type="checkbox" id="challenge12" class="challenge-checkbox"/>
-                    <label for="challenge12"> Provocare 12</label>
-                    <p>Provocare 12</p>
-                        <p>Descarcă-ți o aplicație de resell și vinde-ți bluza aia pe care n-ai mai purtat-o de un an.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge12" class="challenge-checkbox" />
+                            <label for="challenge12"> Provocare 12</label>
+                            {/* <p>Provocare 12</p> */}
+                            <p>Descarcă-ți o aplicație de resell și vinde-ți bluza aia pe care n-ai mai purtat-o de un an.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal13">
-                    <input type="checkbox" id="challenge13" class="challenge-checkbox"/>
-                    <label for="challenge13"> Provocare 13</label>
-                    <p>Provocare 13</p>
-                        <p>Mergi azi la cumpărături singur pentru a fi mai focusat pe ce ai de luat.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge13" class="challenge-checkbox" />
+                            <label for="challenge13"> Provocare 13</label>
+                            {/* <p>Provocare 13</p> */}
+                            <p>Mergi azi la cumpărături singur pentru a fi mai focusat pe ce ai de luat.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal14">
-                    <input type="checkbox" id="challenge14" class="challenge-checkbox"/>
-                    <label for="challenge14"> Provocare 14</label>
-                    <p>Provocare 14</p>
-                        <p>Deschide-ți azi un fond de urgență, pune primii 100 de lei în acest fond.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge14" class="challenge-checkbox" />
+                            <label for="challenge14"> Provocare 14</label>
+                            {/* <p>Provocare 14</p> */}
+                            <p>Deschide-ți azi un fond de urgență, pune primii 100 de lei în acest fond.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal15">
-                    <input type="checkbox" id="challenge15" class="challenge-checkbox"/>
-                    <label for="challenge15"> Provocare 15</label>
-                    <p>Provocare 15</p>
-                        <p>Pune deoparte bancnotele de 5 lei pe care le primești rest.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge15" class="challenge-checkbox" />
+                            <label for="challenge15"> Provocare 15</label>
+                            {/* <p>Provocare 15</p> */}
+                            <p>Pune deoparte bancnotele de 5 lei pe care le primești rest.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal16">
-                    <input type="checkbox" id="challenge16" class="challenge-checkbox"/>
-                    <label for="challenge16"> Provocare 16</label>
-                    <p>Provocare 16</p>
-                        <p>Închide apa când te speli pe dinți. Datele arată că vei folosi mai puțin de 2 litri/zi în acest fel.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge16" class="challenge-checkbox" />
+                            <label for="challenge16"> Provocare 16</label>
+                            {/* <p>Provocare 16</p> */}
+                            <p>Închide apa când te speli pe dinți. Datele arată că vei folosi mai puțin de 2 litri/zi în acest fel.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal17">
-                    <input type="checkbox" id="challenge17" class="challenge-checkbox"/>
-                    <label for="challenge17"> Provocare 17</label>
-                    <p>Provocare 17</p>
-                        <p>Provocarea no spend day: Incearca sa stai o zi fara sa cheltui nimic.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge17" class="challenge-checkbox" />
+                            <label for="challenge17"> Provocare 17</label>
+                            {/* <p>Provocare 17</p> */}
+                            <p>Provocarea no spend day: Incearca sa stai o zi fara sa cheltui nimic.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal18">
-                    <input type="checkbox" id="challenge18" class="challenge-checkbox"/>
-                    <label for="challenge18"> Provocare 18</label>
-                    <p>Provocare 18</p>
-                        <p>Fă o analiză S.M.A.R.T. a obiectivului tău financiar.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge18" class="challenge-checkbox" />
+                            <label for="challenge18"> Provocare 18</label>
+                            {/* <p>Provocare 18</p> */}
+                            <p>Fă o analiză S.M.A.R.T. a obiectivului tău financiar.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal19">
-                    <input type="checkbox" id="challenge19" class="challenge-checkbox"/>
-                    <label for="challenge19"> Provocare 19</label>
-                    <p>Provocare 19</p>
-                        <p>Organizează-ți toate hainele astfel încât să le poți vedea pe toate în dulap. Acum nu o să mai ai scuza că ”nu ai cu se să te îmbraci”!</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge19" class="challenge-checkbox" />
+                            <label for="challenge19"> Provocare 19</label>
+                            {/* <p>Provocare 19</p> */}
+                            <p>Organizează-ți toate hainele astfel încât să le poți vedea pe toate în dulap. Acum nu o să mai ai scuza că ”nu ai cu se să te îmbraci”!</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal20">
-                    <input type="checkbox" id="challenge20" class="challenge-checkbox"/>
-                    <label for="challenge20"> Provocare 20</label>
-                    <p>Provocare 20</p>
-                        <p>Fă-ți un abonament de familie pentru serviciile de streaming și împarte-l cu prietenii.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge20" class="challenge-checkbox" />
+                            <label for="challenge20"> Provocare 20</label>
+                            {/* <p>Provocare 20</p> */}
+                            <p>Fă-ți un abonament de familie pentru serviciile de streaming și împarte-l cu prietenii.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal21">
-                    <input type="checkbox" id="challenge21" class="challenge-checkbox"/>
-                    <label for="challenge21"> Provocare 21</label>
-                    <p>Provocare 21</p>
-                        <p>Schimbă-ți azi becul obișnuit cu unul economic.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge21" class="challenge-checkbox" />
+                            <label for="challenge21"> Provocare 21</label>
+                            {/* <p>Provocare 21</p> */}
+                            <p>Schimbă-ți azi becul obișnuit cu unul economic.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal22">
-                    <input type="checkbox" id="challenge22" class="challenge-checkbox"/>
-                    <label for="challenge22"> Provocare 22</label>
-                    <p>Provocare 22</p>
-                        <p>Gătește o masă cu ce ai rămas prin frigider. Nici nu știi cât de creativ poți să devii!</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge22" class="challenge-checkbox" />
+                            <label for="challenge22"> Provocare 22</label>
+                            {/* <p>Provocare 22</p> */}
+                            <p>Gătește o masă cu ce ai rămas prin frigider. Nici nu știi cât de creativ poți să devii!</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal23">
-                    <input type="checkbox" id="challenge23" class="challenge-checkbox"/>
-                    <label for="challenge23"> Provocare 23</label>
-                    <p>Provocare 23</p>
-                        <p>Incepe de azi sa pui 10 lei deoparte pentru urgente medicale.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge23" class="challenge-checkbox" />
+                            <label for="challenge23"> Provocare 23</label>
+                            {/* <p>Provocare 23</p> */}
+                            <p>Incepe de azi sa pui 10 lei deoparte pentru urgente medicale.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal24">
-                    <input type="checkbox" id="challenge24" class="challenge-checkbox"/>
-                    <label for="challenge24"> Provocare 24</label>
-                    <p>Provocare 24</p>
-                        <p>Când mergi azi la magazin, ia-ți o pungă cu tine și nu mai cumpăra de acolo.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge24" class="challenge-checkbox" />
+                            <label for="challenge24"> Provocare 24</label>
+                            {/* <p>Provocare 24</p> */}
+                            <p>Când mergi azi la magazin, ia-ți o pungă cu tine și nu mai cumpăra de acolo.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal25">
-                    <input type="checkbox" id="challenge25" class="challenge-checkbox"/>
-                    <label for="challenge25"> Provocare 25</label>
-                    <p>Provocare 25</p>
-                        <p>Cumpără un cadou pentru cineva drag de Crăciun și astfel scapi de presiunea achiziționării tuturor cadourilor în luna decembrie.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge25" class="challenge-checkbox" />
+                            <label for="challenge25"> Provocare 25</label>
+                            {/* <p>Provocare 25</p> */}
+                            <p>Cumpără un cadou pentru cineva drag de Crăciun și astfel scapi de presiunea achiziționării tuturor cadourilor în luna decembrie.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal26">
-                    <input type="checkbox" id="challenge26" class="challenge-checkbox"/>
-                    <label for="challenge26"> Provocare 26</label>
-                    <p>Provocare 26</p>
-                        <p>E ziua prietenului tău azi? Fă-i un cadou DIY!</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge26" class="challenge-checkbox" />
+                            <label for="challenge26"> Provocare 26</label>
+                            {/* <p>Provocare 26</p> */}
+                            <p>E ziua prietenului tău azi? Fă-i un cadou DIY!</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal27">
-                    <input type="checkbox" id="challenge27" class="challenge-checkbox"/>
-                    <label for="challenge27"> Provocare 27</label>
-                    <p>Provocare 27</p>
-                        <p>Când îți gătești cina în seara asta, folosește capacul pe tigaie sau oală pentru a consuma mai putin gaz sau energie electrică.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge27" class="challenge-checkbox" />
+                            <label for="challenge27"> Provocare 27</label>
+                            {/* <p>Provocare 27</p> */}
+                            <p>Când îți gătești cina în seara asta, folosește capacul pe tigaie sau oală pentru a consuma mai putin gaz sau energie electrică.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal28">
-                    <input type="checkbox" id="challenge28" class="challenge-checkbox"/>
-                    <label for="challenge28"> Provocare 28</label>
-                    <p>Provocare 28</p>
-                        <p>Vrei să-ți cumperi cartea aia? Vezi mai întâi dacă o găsești la cea mai apropiată bibliotecă.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge28" class="challenge-checkbox" />
+                            <label for="challenge28"> Provocare 28</label>
+                            {/* <p>Provocare 28</p> */}
+                            <p>Vrei să-ți cumperi cartea aia? Vezi mai întâi dacă o găsești la cea mai apropiată bibliotecă.</p>
+                        </div>
                     </div>
 
                     <div class="challenge-card" data-image="chal29">
-                    <input type="checkbox" id="challenge29" class="challenge-checkbox"/>
-                    <label for="challenge29"> Provocare 29</label>
-                    <p>Provocare 29</p>
-                        <p>Dacă ți s-a stricat un lucru ușor de reparat, cere ajutorul unui prieten sau încearcă tu, în loc să plătești pe cineva.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge29" class="challenge-checkbox" />
+                            <label for="challenge29"> Provocare 29</label>
+                            {/* <p>Provocare 29</p> */}
+                            <p>Dacă ți s-a stricat un lucru ușor de reparat, cere ajutorul unui prieten sau încearcă tu, în loc să plătești pe cineva.</p>
+                        </div>
                     </div>
 
-                    <div class="challenge-card" data-image="chal30">
-                    <input type="checkbox" id="challenge30" class="challenge-checkbox"/>
-                    <label for="challenge30"> Provocare 30</label>
-                    <p>Provocare 30</p>
-                        <p>Daca trebuie sa mergi azi la supermarket, nu te duce cand iti este foame. Vei fi tentat sa cumperi mai mult.</p>
+                    <div className="challenge-card" data-image="chal30">
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge30" class="challenge-checkbox" />
+                            <label for="challenge30"> Provocare 30</label>
+                            {/* <p>Provocare 30</p> */}
+                            <p>Daca trebuie sa mergi azi la supermarket, nu te duce cand iti este foame. Vei fi tentat sa cumperi mai mult.</p>
+                        </div>
                     </div>
+
 
 
                     <div class="challenge-card" data-image="chal31">
-                    <input type="checkbox" id="challenge31" class="challenge-checkbox"/>
-                    <label for="challenge31"> Provocare 31</label>
-                    <p>Provocare 31</p>
-                        <p>Împărtășește-ți cunoștințele cu ceilalți și încurajează-i să își dezvolte și ei inteligența financiară. Pune azi pe social media un sfat practic despre cum să ai grijă de bani.</p>
+                        <div className='challenge-card-content'>
+                            <input type="checkbox" id="challenge31" class="challenge-checkbox" />
+                            <label for="challenge31"> Provocare 31</label>
+                            {/* <p>Provocare 31</p> */}
+                            <p>Împărtășește-ți cunoștințele cu ceilalți și încurajează-i să își dezvolte și ei inteligența financiară. Pune azi pe social media un sfat practic despre cum să ai grijă de bani.</p>
+                        </div>
                     </div>
 
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
 
     );
 };

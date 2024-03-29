@@ -151,7 +151,7 @@ const Datorii = () => {
                             <th>Suma</th>
                             <th>Data Imprumut</th>
                             <th>Data Scadenta</th>
-                            <th>Acțiuni</th> {/* Adăugată coloană pentru acțiuni */}
+                            <th>Acțiuni</th>{/* Adăugată coloană pentru acțiuni */}
                         </tr>
                     </thead>
                     <tbody>
