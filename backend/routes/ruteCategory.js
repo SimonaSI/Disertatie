@@ -25,6 +25,30 @@ router.get('/categories/:type', async (req, res) => {
     }
 });
 
+// GET income categories by user ID
+router.get('/categories/income/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId)
+    try {
+        const incomeCategories = await Category.findAll({ where: { type: 'venit', userId } });
+        res.status(200).json(incomeCategories);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+// GET expense categories by user ID
+router.get('/categories/expense/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const expenseCategories = await Category.findAll({ where: { type: 'cheltuiala', userId } });
+        res.status(200).json(expenseCategories);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // GET category by ID
 router.get('/categorie/:id', async (req, res) => {
     const id = req.params.id;

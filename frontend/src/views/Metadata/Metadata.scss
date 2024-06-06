@@ -1,98 +1,99 @@
-.container-pp{
-    width: 100%;
-    height: 80%;
+.container-pp {
+  width: 100%;
+  height: 80%;
 }
 
-.met-container{
-    background-color: #f7cfb2;
+.met-container {
+  background-color: #f7cfb2;
 }
 
 .btn-met {
-    background-color: #fc755e;
-    border: #fc755e;
+  background-color: #fc755e;
+  border: #fc755e;
 }
 
-.btn-met:hover{
-    background-color: #e96c55;
+.btn-met:hover {
+  background-color: #e96c55;
 }
 
-.btn-met:active{
-    background-color: #e96c55;
+.btn-met:active {
+  background-color: #e96c55;
 }
-
 
 /* Stil pentru input-urile din formulare */
 .inpute {
-    width: 100%;
-    padding: 8px;
-    margin: 4px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    outline: none;
-  }
-  
-  
-  /* Stil pentru input-urile de tip checkbox */
-  .inpute[type="checkbox"] {
-    margin: 8px 4px;
-  }
-  
-  /* Stil pentru butoanele de adăugare */
-  .btn-add {
-    background-color: #e96c55;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 12px 4px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .btn-add:hover {
-    background-color: #d6604b;
-  }
-  
-  
-  /* Stil pentru containerele de adăugare tip venit și cheltuială */
-  .adauga-tip-venit,
-  .adauga-tip-cheltuiala {
-    display: flex;
-    background-color: #f7cfb2;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid #55614a;
-    width: 30%;
-    height: 100%;
-    margin: 10px;
-    padding: 16px;
-    border-radius: 10px;
-  }
-  
-  
-  .adauga {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  .labele {
-    margin-bottom: 5px;
-  }
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
 
-  
-  .btn-add:hover {
-    background-color: #45a049;
-  }
-  
-  .btn-add:active {
-    background-color: #3e8e41;
-  }
+/* Stil pentru input-urile de tip checkbox */
+.inpute[type="checkbox"] {
+  margin: 8px 4px;
+}
+
+/* Stil pentru butoanele de adăugare */
+.btn-add {
+  background-color: #e96c55;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 12px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+  background-color: #d6604b;
+}
+
+/* Stil pentru containerele de adăugare tip venit și cheltuială */
+.adauga-tip-venit,
+.adauga-tip-cheltuiala {
+  display: flex;
+  background-color: #f7cfb2;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #55614a;
+  width: 30%;
+  height: 100%;
+  margin: 10px;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.adauga {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.labele {
+  margin-bottom: 5px;
+}
+
+/* Stil pentru listele de tipuri de venituri și cheltuieli */
+.list-group {
+  list-style: none;
+  padding: 0;
+}
+
+.list-group-item {
+  background-color: #fcf8e3;
+  border: 1px solid #ddd;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
 
 

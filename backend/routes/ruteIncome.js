@@ -12,6 +12,17 @@ router.get('/incomes', async (req, res) => {
     }
 });
 
+// GET incomes by user ID
+router.get('/incomes/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const incomes = await Income.findAll({ where: { userId } });
+        res.status(200).json(incomes);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // GET income by ID
 router.get('/incomes/:id', async (req, res) => {
     const id = req.params.id;
@@ -32,6 +43,17 @@ router.post('/incomes', async (req, res) => {
     try {
         const income = await Income.create(req.body);
         res.status(201).json(income);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// POST a new income for a user
+router.post('/incomes/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const newIncome = await Income.create({ ...req.body, userId });
+        res.status(201).json(newIncome);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
