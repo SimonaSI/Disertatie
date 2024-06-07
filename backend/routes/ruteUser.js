@@ -37,6 +37,26 @@ router.post('/users', async (req, res) => {
     }
 });
 
+// POST pentru autentificare (login)
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Caută utilizatorul după adresa de email și parolă
+        const user = await User.findOne({ where: { email, password } });
+        
+        // Verifică dacă utilizatorul există și parola este corectă
+        if (!user) {
+            return res.status(401).json({ message: "Invalid email or password" });
+        }
+
+        // Autentificare reușită
+        res.status(200).json({ message: "Login successful", userId: user.id});
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // PUT (update) user by ID
 router.put('/users/:id', async (req, res) => {
     const id = req.params.id;

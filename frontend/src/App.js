@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import "./App.css";
 import { routes } from "./Utils/appRoutes";
@@ -16,13 +17,16 @@ import Venit from './views/PaginaVenit/Venit';
 import Metadata from './views/Metadata/Metadata';
 
 const App = () => {
+  const location = useLocation();
+
+  const shouldShowMenu = location.pathname !== routes.autentificare; // Decideți dacă trebuie să afișați meniul sau nu
+
   return (
     <div className="App">
       {/* global components */}
       <ToastContainer
         position="top-center"
         autoClose={5000}
-        // autoClose={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -30,7 +34,7 @@ const App = () => {
         draggable
         closeButton={true}
       />
-      <Meniu />
+      {shouldShowMenu && <Meniu />} {/* Afișați meniul numai dacă shouldShowMenu este true */}
       <Routes>
         <Route path={routes.autentificare} element={<Autentificare />} />
         <Route path={routes.pagCheltuieli} element={<Cheltuieli />} />

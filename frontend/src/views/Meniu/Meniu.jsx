@@ -13,7 +13,7 @@ const Meniu = () => {
     inactiveLinkColor = { color: "#000000" };
 
   const handleLogout = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("userId");
     navigate(routes.autentificare);
     toast.success("V-ati delogat cu succes!", { toastId: "sdkhfsjkdd" });
   };
@@ -87,6 +87,17 @@ const Meniu = () => {
 
               <div className="nav-item d-flex justify-content-around align-items-center">
                 <NavLink
+                  className={handleHighlightLinkItem(routes.pagCheltuieli)}
+                  to={routes.pagCheltuieli}
+                >
+                  Cheltuieli
+                </NavLink>
+              </div>
+
+              <span className="delimitator">|</span>
+
+              <div className="nav-item d-flex justify-content-around align-items-center">
+                <NavLink
                   className={handleHighlightLinkItem(routes.pagDatorii)}
                   to={routes.pagDatorii}
 
@@ -95,16 +106,7 @@ const Meniu = () => {
                 </NavLink>
               </div>
 
-              <span className="delimitator">|</span>
-
-              <div className="nav-item d-flex justify-content-around align-items-center">
-                <NavLink
-                  className={handleHighlightLinkItem(routes.pagCheltuieli)}
-                  to={routes.pagCheltuieli}
-                >
-                  Cheltuieli
-                </NavLink>
-              </div>
+              
 
               <span className="delimitator">|</span>
 

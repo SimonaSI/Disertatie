@@ -4,19 +4,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import key from '../images/key.png';
 import user from '../images/user.png';
 import budget from '../images/template.jpg';
+import axios from 'axios'; // Importăm Axios pentru a face cererile HTTP
+import { toast } from 'react-toastify'; // Importăm funcționalitatea de toast
+import 'react-toastify/dist/ReactToastify.css'; // Importăm stilurile pentru toast
 import "./Autentificare.scss";
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Autentificare = () => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
-        phone: '',
         password: '',
     });
 
     const [showLoginForm, setShowLoginForm] = useState(true);
     const [showCreateForm, setShowCreateForm] = useState(false);
+
+
+    const navigate = useNavigate();
 
     const handleShowLoginForm = () => {
         setShowLoginForm(true);
@@ -28,16 +36,65 @@ const Autentificare = () => {
         setShowCreateForm(true);
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const { email, password } = formData; // Accesează valorile din formData
-        console.log('Autentificare cu:', email, password);
-    };
+        const { email, password } = formData;
+    
+        try {
+            const response = await axios.post('http://localhost:8080/api/login', {
+                email,
+                password
+            });
+    
+            console.log('Autentificare cu succes:', response.data);
+            toast.success('Autentificare cu succes!');
+            localStorage.setItem('userId', response.data.userId);
 
-    const handleCreateAccount = (e) => {
+    
+            navigate('/home'); // Asigurați-vă că '/home' este ruta către pagina Home
+        } catch (error) {
+            console.error('Eroare la autentificare:', error.response.data.error);
+            if (error.response.status === 401) {
+                toast.error('Parolă greșită. Vă rugăm să încercați din nou.');
+            } else if (error.response.status === 404) {
+                toast.error('Utilizatorul nu a fost găsit.');
+            } else {
+                toast.error('Eroare la autentificare.');
+            }
+        }
+    };
+    
+    
+
+    const handleCreateAccount = async (e) => {
         e.preventDefault();
-        const { firstName, lastName, email, phone, password } = formData; // Accesează valorile din formData
-        console.log('Creare cont cu:', firstName, lastName, email, phone, password);
+        const { firstName, lastName, email, password } = formData;
+        try {
+            const response = await axios.post('http://localhost:8080/api/users', {
+                firstName,
+                lastName,
+                email,
+                password
+            });
+            console.log('Cont creat cu succes:', response.data);
+            // Afișează un mesaj de succes
+            toast.success('Cont creat cu succes!');
+
+            // Resetează starea formData pentru a șterge valorile introduse în formular
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+            });
+
+            // Redirecționează utilizatorul către pagina de autentificare
+            handleShowLoginForm();
+        } catch (error) {
+            console.error('Eroare la crearea contului:', error.response.data.error);
+            // Aici poți trata eroarea și afișa un mesaj corespunzător
+            toast.error('Eroare la crearea contului.');
+        }
     };
 
     const handleInputChange = (e) => {
@@ -86,7 +143,7 @@ const Autentificare = () => {
                                     />
                             </Form.Group>
 
-                            <Button className='buton2'>
+                            <Button className='buton2' type='submit'>
                                 Autentificare
                             </Button>
                         </Form>
@@ -127,17 +184,6 @@ const Autentificare = () => {
                                 />
                             </Form.Group>
 
-                            <Form.Group className='w-100 d-flex flex-row justify-content-between align-items-center m-2' controlId="formPhone">
-                                <Form.Control className='d-flex flex-row justify-content-between align-items-center'
-                                    type="tel"
-                                    placeholder="Introdu numărul de telefon"
-                                    required
-                                    name="phone" // Adaugă name pentru a asocia cu cheia din formData
-                                    value={formData.phone} // Adaugă value pentru a sincroniza cu starea formData
-                                    onChange={handleInputChange}
-                                />
-                            </Form.Group>
-
                             <Form.Group className='w-100 d-flex flex-row justify-content-between align-items-center m-2' controlId="formPasswordCreate">
                                 <Form.Control className='d-flex flex-row justify-content-between align-items-center'
                                     type="password"
@@ -153,7 +199,7 @@ const Autentificare = () => {
                                 <Button className="buton4" onClick={handleShowLoginForm}>
                                     Anulează
                                 </Button>
-                                <Button className='buton3'>
+                                <Button className='buton3' type='submit'>
                                     Creează Cont
                                 </Button>
                             </div>

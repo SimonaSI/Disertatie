@@ -4,18 +4,18 @@ import axios from "axios";
 
 const AdaugaVenitForm = ({ onClose, onAdaugaVenit }) => {
   const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]); // Initialize with current date
   const [tipuriVenituri, setTipuriVenituri] = useState([]);
   const [selectedTipVenit, setSelectedTipVenit] = useState("");
+
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     // Funție pentru a obține tipurile de venituri de la backend
     const getTipuriVenituri = async () => {
       try {
-        console.log('sunt aici')
-        const response = await axios.get("http://localhost:8080/api/categories/income/1");
+        const response = await axios.get(`http://localhost:8080/api/categories/income/${userId}`);
         setTipuriVenituri(response.data);
-        console.log(response.data)
       } catch (error) {
         console.error("Error getting income categories:", error);
       }
@@ -37,15 +37,13 @@ const AdaugaVenitForm = ({ onClose, onAdaugaVenit }) => {
       onClose();
       toast.success("Venit adăugat cu succes!");
       setAmount("");
-      setDate("");
+      setDate(new Date().toISOString().split('T')[0]); // Reset date to current date after submission
       setSelectedTipVenit("");
     } else {
       toast.error("Toate câmpurile sunt obligatorii!");
     }
   };
   
-  
-
   return (
     <div className="popup-content">
       <h2>Adaugă Venit</h2>
@@ -53,17 +51,16 @@ const AdaugaVenitForm = ({ onClose, onAdaugaVenit }) => {
       <label>
         Tip Venit:
         <select
-  value={selectedTipVenit}
-  onChange={(e) => setSelectedTipVenit(e.target.value)}
->
-  <option value="">Selectează un tip de venit</option>
-  {tipuriVenituri.map((venit) => (
-    <option key={venit.id} value={venit.id}>
-      {venit.name}
-    </option>
-  ))}
-</select>
-
+          value={selectedTipVenit}
+          onChange={(e) => setSelectedTipVenit(e.target.value)}
+        >
+          <option value="">Selectează un tip de venit</option>
+          {tipuriVenituri.map((venit) => (
+            <option key={venit.id} value={venit.id}>
+              {venit.name}
+            </option>
+          ))}
+        </select>
       </label>
       <label>
         Suma:

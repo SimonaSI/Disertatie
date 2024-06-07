@@ -12,6 +12,17 @@ router.get('/debts', async (req, res) => {
     }
 });
 
+// GET all debts by user
+router.get('/debts/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const debts = await Debt.findAll({ where: { userId } });
+        res.status(200).json(debts);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // GET debt by ID
 router.get('/debts/:id', async (req, res) => {
     const id = req.params.id;
@@ -42,6 +53,18 @@ router.get('/debts/paid/:isPaid', async (req, res) => {
 // POST a new debt
 router.post('/debts', async (req, res) => {
     try {
+        const debt = await Debt.create(req.body);
+        res.status(201).json(debt);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// POST a new debt for a user
+router.post('/debts/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        req.body.userId = userId; // Adaugă id-ul utilizatorului în corpul cererii
         const debt = await Debt.create(req.body);
         res.status(201).json(debt);
     } catch (error) {

@@ -74,6 +74,21 @@ router.post('/categories', async (req, res) => {
     }
 });
 
+// POST a new category for a specific user
+router.post('/categories/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        // Adăugați id-ul utilizatorului în corpul cererii pentru a crea categoria pentru acel utilizator
+        req.body.userId = userId;
+
+        const category = await Category.create(req.body);
+        res.status(201).json(category);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+
 // PUT (update) category by ID
 router.put('/categories/:id', async (req, res) => {
     const id = req.params.id;

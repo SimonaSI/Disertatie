@@ -15,11 +15,13 @@ const Metadata = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/categories'); // Ajustează URL-ul la adresa backend-ului tău
-        const venituriData = response.data.filter(category => category.type === 'venit');
-        const cheltuieliData = response.data.filter(category => category.type === 'cheltuiala');
-        setVenituri(venituriData);
-        setCheltuieli(cheltuieliData);
+        const userId = localStorage.getItem("userId");
+
+        const responseVenituri = await axios.get(`http://localhost:8080/api/categories/income/${userId}`);
+        setVenituri(responseVenituri.data);
+
+        const responseCheltuieli = await axios.get(`http://localhost:8080/api/categories/expense/${userId}`);
+        setCheltuieli(responseCheltuieli.data);
       } catch (error) {
         console.error('Error fetching categories:', error.response ? error.response.data : error.message);
       }
@@ -29,7 +31,16 @@ const Metadata = () => {
 
   const createCategory = async (data) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/categories', data); // Ajustează URL-ul la adresa backend-ului tău
+      const userId = localStorage.getItem("userId");
+      const response = await axios.post(`http://localhost:8080/api/categories/user/${userId}`, data);
+      // După ce categoria a fost adăugată cu succes, actualizează lista de venituri sau cheltuieli
+      if (data.type === 'venit') {
+        const updatedVenituri = [...venituri, response.data];
+        setVenituri(updatedVenituri);
+      } else if (data.type === 'cheltuiala') {
+        const updatedCheltuieli = [...cheltuieli, response.data];
+        setCheltuieli(updatedCheltuieli);
+      }
       return response.data;
     } catch (error) {
       console.error('Error creating category:', error.response ? error.response.data : error.message);
@@ -38,38 +49,34 @@ const Metadata = () => {
   };
 
   const handleAdaugaTipVenit = async () => {
-    if (tipAdaugare === "venit") {
-      if (tipVenit && dataIncasare) {
-        try {
-          await createCategory({ name: tipVenit, type: 'venit', userId: 1 }); // Setează userId corespunzător
-          toast.success("Tip de venit adăugat cu succes!");
-          setTipVenit("");
-          setDataIncasare("");
-          setTipAdaugare("");
-        } catch (error) {
-          toast.error("Eroare la adăugarea tipului de venit!");
-        }
-      } else {
-        toast.error("Completați toate câmpurile pentru tipul de venit!");
+    if (tipVenit && dataIncasare) {
+      try {
+        await createCategory({ name: tipVenit, type: 'venit' });
+        toast.success("Tip de venit adăugat cu succes!");
+        setTipVenit("");
+        setDataIncasare("");
+        setTipAdaugare("");
+      } catch (error) {
+        toast.error("Eroare la adăugarea tipului de venit!");
       }
+    } else {
+      toast.error("Completați toate câmpurile pentru tipul de venit!");
     }
   };
 
   const handleAdaugaTipCheltuiala = async () => {
-    if (tipAdaugare === "cheltuiala") {
-      if (denumireCheltuiala) {
-        try {
-          await createCategory({ name: denumireCheltuiala, type: 'cheltuiala', userId: 1 }); // Setează userId corespunzător
-          toast.success("Tip de cheltuială adăugat cu succes!");
-          setDenumireCheltuiala("");
-          setValoareMaxima(0);
-          setTipAdaugare("");
-        } catch (error) {
-          toast.error("Eroare la adăugarea tipului de cheltuială!");
-        }
-      } else {
-        toast.error("Completați denumirea pentru tipul de cheltuială!");
+    if (denumireCheltuiala) {
+      try {
+        await createCategory({ name: denumireCheltuiala, type: 'cheltuiala' });
+        toast.success("Tip de cheltuială adăugat cu succes!");
+        setDenumireCheltuiala("");
+        setValoareMaxima(0);
+        setTipAdaugare("");
+      } catch (error) {
+        toast.error("Eroare la adăugarea tipului de cheltuială!");
       }
+    } else {
+      toast.error("Completați denumirea pentru tipul de cheltuială!");
     }
   };
 
@@ -82,6 +89,7 @@ const Metadata = () => {
 
       <div className="d-flex flex-row justify-content-center align-items-center m-2">
         <button className="btn-met m-2" onClick={() => setTipAdaugare("venit")}>Adaugă Tip Venit</button>
+       
         <button className="btn-met m-2" onClick={() => setTipAdaugare("cheltuiala")}>Adaugă Tip Cheltuială</button>
       </div>
 
@@ -107,7 +115,6 @@ const Metadata = () => {
       {tipAdaugare === "venit" && (
         <div className="w-100 d-flex flex-row justify-content-center align-items-center m-2">
           <div className="adauga-tip-venit">
-            <button className="btn-close" onClick={() => setTipAdaugare("")}>×</button>
             <div className="adauga">
               <label className="labele">
                 Denumire:
@@ -136,7 +143,6 @@ const Metadata = () => {
       {tipAdaugare === "cheltuiala" && (
         <div className="w-100 d-flex flex-row justify-content-center align-items-center m-2">
           <div className="adauga-tip-cheltuiala">
-            <button className="btn-close" onClick={() => setTipAdaugare("")}>×</button>
             <div className="adauga">
               <label className="labele">
                 Denumire:

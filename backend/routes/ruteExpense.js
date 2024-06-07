@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Expense = require('../models/Expense');
+const User = require('../models/User');
 
 // GET all expenses
 router.get('/expenses', async (req, res) => {
@@ -27,10 +28,42 @@ router.get('/expenses/:id', async (req, res) => {
     }
 });
 
+// GET all expenses by user ID
+router.get('/users/:userId/expenses', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const user = await User.findByPk(userId);
+        if (!user) {
+            res.status(404).json({ message: "User not found" });
+            return;
+        }
+        const expenses = await Expense.findAll({ where: { userId } });
+        res.status(200).json(expenses);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // POST a new expense
 router.post('/expenses', async (req, res) => {
     try {
         const expense = await Expense.create(req.body);
+        res.status(201).json(expense);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
+// POST a new expense for a user
+router.post('/users/:userId/expenses', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const user = await User.findByPk(userId);
+        if (!user) {
+            res.status(404).json({ message: "User not found" });
+            return;
+        }
+        const expense = await Expense.create({ ...req.body, userId });
         res.status(201).json(expense);
     } catch (error) {
         res.status(400).json({ error: error.message });
