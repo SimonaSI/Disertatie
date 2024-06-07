@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Expense = require('../models/Expense');
 const User = require('../models/User');
+const Category = require('../models/Category');
+const { Sequelize, Op } = require('sequelize');
 
 // GET all expenses
 router.get('/expenses', async (req, res) => {
@@ -43,6 +45,49 @@ router.get('/users/:userId/expenses', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
+
+// GET suma totală a cheltuielilor pe categorie pentru un utilizator într-o anumită lună
+router.get('/expenses/user/:userId/sumByCategory', async (req, res) => {
+    const userId = req.params.userId;
+    const { month, year } = req.query; // Preia luna și anul din query params
+
+    if (!month || !year) {
+        return res.status(400).json({ error: "Month and year are required" });
+    }
+
+    try {
+        const startDate = new Date(year, month - 1, 1);
+        const endDate = new Date(year, month, 0, 23, 59, 59); // Ultima zi a lunii
+
+        const expensesByCategory = await Expense.findAll({
+            where: {
+                userId,
+                date: {
+                    [Op.between]: [startDate, endDate]
+                }
+            },
+            attributes: [
+                'categoryId',
+                [Sequelize.fn('SUM', Sequelize.col('amount')), 'totalAmount']
+            ],
+            include: [{
+                model: Category,
+                attributes: ['name']
+            }],
+            group: ['categoryId', 'Category.id'],
+           // raw: true // Obținem rezultatele ca array simplu de obiecte
+        });
+
+        res.status(200).json(expensesByCategory);
+    } catch (error) {
+        console.error('Error fetching expenses by category:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 
 // POST a new expense
 router.post('/expenses', async (req, res) => {

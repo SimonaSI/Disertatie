@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Income = require('../models/Income'); // Importăm modelul Income
+const Income = require('../models/Income'); 
+const Category = require('../models/Category');
+const { Sequelize, Op } = require('sequelize');
 
 // GET all incomes
 router.get('/incomes', async (req, res) => {
@@ -37,6 +39,49 @@ router.get('/incomes/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+
+
+
+// GET suma totală a veniturilor pe categorie pentru un utilizator într-o anumită lună
+router.get('/incomes/user/:userId/sumByCategory', async (req, res) => {
+    const userId = req.params.userId;
+    const { month, year } = req.query; // Preia luna și anul din query params
+
+    if (!month || !year) {
+        return res.status(400).json({ error: "Month and year are required" });
+    }
+
+    try {
+        const startDate = new Date(year, month - 1, 1);
+        const endDate = new Date(year, month, 0, 23, 59, 59); // Ultima zi a lunii
+
+        const incomesByCategory = await Income.findAll({
+            where: {
+                userId,
+                date: {
+                    [Op.between]: [startDate, endDate]
+                }
+            },
+            attributes: [
+                'categoryId',
+                [Sequelize.fn('SUM', Sequelize.col('amount')), 'totalAmount']
+            ],
+            include: [{
+                model: Category,
+                attributes: ['name']
+            }],
+            group: ['categoryId', 'Category.id']
+        });
+        res.status(200).json(incomesByCategory);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+
+
 
 // POST a new income
 router.post('/incomes', async (req, res) => {
