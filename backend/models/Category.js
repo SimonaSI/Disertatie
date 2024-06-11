@@ -15,6 +15,10 @@ const Category = sequelize.define('Category', {
         type: DataTypes.ENUM('venit', 'cheltuiala'),
         allowNull: false
     },
+    maxValue: {
+        type: DataTypes.FLOAT, 
+        allowNull: true
+    },
     userId: {
         type: DataTypes.INTEGER,
         references: {

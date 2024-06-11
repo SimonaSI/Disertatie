@@ -32,7 +32,7 @@ const TotalVenituri = ({ userId, month, year }) => {
   const chartData = {
     labels: incomeData.map(income => income.Category.name),
     datasets: [{
-      label: 'Total Venituri pe Categorie',
+      label: 'Venit',
       data: incomeData.map(income => income.totalAmount),
       backgroundColor: 'rgba(75, 192, 192, 0.2)',
       borderColor: 'rgba(75, 192, 192, 1)',

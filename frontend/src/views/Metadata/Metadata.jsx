@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import EditCategoryModal from "./EditCategoryModal";
 import "./Metadata.scss";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const Metadata = () => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [tipAdaugare, setTipAdaugare] = useState("");
   const [tipVenit, setTipVenit] = useState("");
   const [dataIncasare, setDataIncasare] = useState("");
@@ -16,7 +19,6 @@ const Metadata = () => {
     const fetchCategories = async () => {
       try {
         const userId = localStorage.getItem("userId");
-
         const responseVenituri = await axios.get(`http://localhost:8080/api/categories/income/${userId}`);
         setVenituri(responseVenituri.data);
 
@@ -28,6 +30,42 @@ const Metadata = () => {
     };
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    console.log("Selected category:", selectedCategory);
+    console.log("Show edit modal:", showEditModal);
+  }, [selectedCategory, showEditModal]);
+  
+
+  const handleEditCategory = (category) => {
+    setSelectedCategory(category);
+    setShowEditModal(true);
+
+  };
+  
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setSelectedCategory(null);
+  };
+
+  const saveEditedCategory = async (updatedCategory) => {
+    try {
+      const response = await axios.put(`http://localhost:8080/api/categories/${updatedCategory.id}`, updatedCategory);
+      // După ce categoria a fost actualizată cu succes, actualizează lista de venituri sau cheltuieli
+      if (updatedCategory.type === 'venit') {
+        const updatedVenituri = venituri.map(venit => venit.id === updatedCategory.id ? response.data : venit);
+        setVenituri(updatedVenituri);
+      } else if (updatedCategory.type === 'cheltuiala') {
+        const updatedCheltuieli = cheltuieli.map(cheltuiala => cheltuiala.id === updatedCategory.id ? response.data : cheltuiala);
+        setCheltuieli(updatedCheltuieli);
+      }
+      toast.success("Categoria a fost actualizată cu succes!");
+    } catch (error) {
+      console.error('Error updating category:', error.response ? error.response.data : error.message);
+      toast.error("Eroare la actualizarea categoriei!");
+    }
+  };
 
   const createCategory = async (data) => {
     try {
@@ -67,7 +105,7 @@ const Metadata = () => {
   const handleAdaugaTipCheltuiala = async () => {
     if (denumireCheltuiala) {
       try {
-        await createCategory({ name: denumireCheltuiala, type: 'cheltuiala' });
+        await createCategory({ name: denumireCheltuiala, type: 'cheltuiala', maxValue: valoareMaxima });
         toast.success("Tip de cheltuială adăugat cu succes!");
         setDenumireCheltuiala("");
         setValoareMaxima(0);
@@ -97,9 +135,11 @@ const Metadata = () => {
         <div className="w-50">
           <h2>Lista tipuri venituri</h2>
           <ul className="list-group">
-            {venituri.map(venit => (
-              <li key={venit.id} className="list-group-item">{venit.name}</li>
-            ))}
+          {venituri.map(venit => (
+  <li key={venit.id} className="list-group-item" onClick={() => handleEditCategory(venit)}>
+  {venit.name}</li>
+))}
+
           </ul>
         </div>
         <div className="w-50">
@@ -166,6 +206,14 @@ const Metadata = () => {
             <button className="btn-add" onClick={handleAdaugaTipCheltuiala}>Adaugă Tip</button>
           </div>
         </div>
+      )}
+
+{showEditModal && (
+        <EditCategoryModal
+          category={selectedCategory}
+          onSave={saveEditedCategory}
+          onClose={handleCloseEditModal}
+        />
       )}
     </div>
   );

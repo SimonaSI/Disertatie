@@ -30,7 +30,7 @@ const TotalCheltuieli = ({ userId, month, year }) => {
   const chartData = {
     labels: expenseData.map(expense => expense.Category.name),
     datasets: [{
-      label: 'Total Cheltuieli pe Categorie',
+      label: 'Cheltuieli',
       data: expenseData.map(expense => expense.totalAmount),
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgba(255, 99, 132, 1)',

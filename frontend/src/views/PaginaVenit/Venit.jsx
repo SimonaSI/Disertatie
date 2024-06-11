@@ -5,21 +5,20 @@ import Modal from "react-modal";
 import AdaugaVenitForm from "./AdaugaVenitForm";
 import axios from "axios";
 
-// Set the app element for react-modal
 Modal.setAppElement('#root');
 
 const Venit = () => {
   const [venituri, setVenituri] = useState([]);
   const [categorii, setCategorii] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth()); // Default la luna curenta
+  const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
 
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     fetchVenituri();
     fetchCategorii();
-  }, [selectedMonth]); // Se reîncarcă veniturile atunci când este selectată o altă lună
+  }, [selectedMonth]);
 
   const fetchVenituri = async () => {
     try {
@@ -51,7 +50,6 @@ const Venit = () => {
       setVenituri([...venituri, response.data]);
       toast.success("Venit adăugat cu succes!");
       
-      // Obține categoriile actualizate înainte de a actualiza starea veniturilor
       const categoriiResponse = await axios.get("http://localhost:8080/api/categories");
       setCategorii(categoriiResponse.data);
     } catch (error) {
@@ -73,24 +71,27 @@ const Venit = () => {
   function getCurrentMonth() {
     const today = new Date();
     const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Adaugă un zero în față dacă este necesar
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
     return `${year}-${month}`;
   }
 
   return (
+    <div className="container-venit">
     <div className="venit-container">
-      <div className="filters">
-        <label>Filtrare după lună:</label>
-        <input
-          type="month"
-          value={selectedMonth}
-          onChange={(e) => setSelectedMonth(e.target.value)}
-        />
+      <div className="header-filtre">
+        <h2>Lista Venituri</h2>
+        <div className="filters">
+          
+          <input
+            type="month"
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+          />
+        </div>
       </div>
 
       <button onClick={() => setIsModalOpen(true)}>Adaugă Venit</button>
   
-      <h2>Lista Venituri</h2>
       <ul>
         {venituri.map((venit) => (
           <li key={venit.id}>
@@ -108,7 +109,6 @@ const Venit = () => {
         contentLabel="Adaugă Venit"
         className="popup"
         overlayClassName="overlay"
-        // Set the app element for this modal
         appElement={document.getElementById('root')}
       >
         <AdaugaVenitForm
@@ -116,6 +116,7 @@ const Venit = () => {
           onAdaugaVenit={handleAdaugaVenit}
         />
       </Modal>
+    </div>
     </div>
   );
 };

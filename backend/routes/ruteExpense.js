@@ -89,6 +89,40 @@ router.get('/expenses/user/:userId/sumByCategory', async (req, res) => {
 
 
 
+// GET evolutia cheltuielilor pe luni, opțional filtrate pe categorie
+router.get('/expenses/user/:userId/evolution', async (req, res) => {
+    const userId = req.params.userId;
+    const { categoryId } = req.query; // Preia categoryId din query params
+
+    try {
+        const whereClause = {
+            userId,
+        };
+        if (categoryId) {
+            whereClause.categoryId = categoryId;
+        }
+
+        const expensesEvolution = await Expense.findAll({
+            where: whereClause,
+            attributes: [
+                [Sequelize.literal("strftime('%Y-%m', date)"), 'month'],
+                [Sequelize.fn('SUM', Sequelize.col('amount')), 'totalAmount']
+            ],
+            group: [Sequelize.literal("strftime('%Y-%m', date)")],
+            order: [[Sequelize.literal("strftime('%Y-%m', date)"), 'ASC']]
+        });
+
+        res.status(200).json(expensesEvolution);
+    } catch (error) {
+        res.status500.json({ error: error.message });
+    }
+});
+
+
+
+
+
+
 // POST a new expense
 router.post('/expenses', async (req, res) => {
     try {

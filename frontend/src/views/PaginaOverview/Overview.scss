@@ -1,22 +1,16 @@
 /* Overview.scss */
 
 .container {
-    display: flex; /* Setăm containerul să folosească flexbox */
-    flex-wrap: wrap; /* Permitere wrap pentru a face salt la rând nou când spațiul este insuficient */
-  }
-  
-  .chart-container {
-    width: 50%; /* Setăm lățimea fiecărui grafic la 50% pentru a se încadra două pe o linie */
-    max-width: calc(50% - 20px); /* Setăm lățimea maximă cu un mic spațiu între ele */
-    max-height: 400px; /* Setăm înălțimea maximă dorită */
-    overflow: auto; /* Adăugăm scroll dacă depășim dimensiunile maxime */
-    margin: 20px; /* Adăugăm un spațiu între grafice */
-  }
-  
-  .total-amount-label {
-    font-size: 24px; /* Mărimea textului pentru total */
-    font-weight: bold; /* Text îngroșat */
-    text-align: center; /* Centrare text */
-    margin-bottom: 20px; /* Spațiu de jos */
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  border: 1 solid black;
+
+}
+
+
+
+
+
+
+
+
