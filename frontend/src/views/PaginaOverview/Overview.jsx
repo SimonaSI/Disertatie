@@ -138,9 +138,35 @@ const Overview = () => {
         <div className="chart-container">
           <EvolutieCheltuieli userId={userId} />
         </div>
-        <div></div>
-        {/* la div mai sus pui notificari si alerte */}
+        <div className="notificari-container">
+          {/* la div mai sus pui notificari si alerte */}
+          <p className="mb-0" style={{ color: "#1838eb" }}>
+            <strong>Notificari: </strong>{" "}
+          </p>
+          <ul>
+            <li style={{ color: "#1838eb" }}>
+              In curand vei incasa 7000 lei din Salarii
+            </li>
+          </ul>
+          <p className="mb-0" style={{ color: "#e90707" }}>
+            <strong>Alerte: </strong>{" "}
+          </p>
+          <ul style={{ color: "#e90707" }}>
+            <li>
+              Data scadenta pentru datoria "Imprumut Claudia" a fost depasita.
+            </li>
+            <li>
+              Ai grija, pentru categoria Mancare ai cheltuit o valoare mai mare
+              decat ti-ai propus!
+            </li>
+          </ul>
+        </div>
       </div>
+      <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+      <script
+        src="https://mediafiles.botpress.cloud/6338d451-2a60-4f6d-8873-9f9e99c21f11/webchat/config.js"
+        defer
+      ></script>
     </div>
   );
 };

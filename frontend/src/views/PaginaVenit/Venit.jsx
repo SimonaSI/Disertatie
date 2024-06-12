@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import AdaugaVenitForm from "./AdaugaVenitForm";
 import axios from "axios";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 const Venit = () => {
   const [venituri, setVenituri] = useState([]);
@@ -22,18 +22,22 @@ const Venit = () => {
 
   const fetchVenituri = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/incomes/user/${userId}`);
-      const filteredVenituri = response.data.filter(venit => {
+      const response = await axios.get(
+        `http://localhost:8080/api/incomes/user/${userId}`
+      );
+      const filteredVenituri = response.data.filter((venit) => {
         const venitDate = new Date(venit.date);
         const selectedDate = new Date(selectedMonth);
-        return venitDate.getFullYear() === selectedDate.getFullYear() && venitDate.getMonth() === selectedDate.getMonth();
+        return (
+          venitDate.getFullYear() === selectedDate.getFullYear() &&
+          venitDate.getMonth() === selectedDate.getMonth()
+        );
       });
       setVenituri(filteredVenituri);
     } catch (error) {
       console.error("Error fetching incomes:", error);
     }
   };
-  
 
   const fetchCategorii = async () => {
     try {
@@ -46,11 +50,16 @@ const Venit = () => {
 
   const handleAdaugaVenit = async (nouVenit) => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/incomes/user/${userId}`, nouVenit);
+      const response = await axios.post(
+        `http://localhost:8080/api/incomes/user/${userId}`,
+        nouVenit
+      );
       setVenituri([...venituri, response.data]);
       toast.success("Venit adăugat cu succes!");
-      
-      const categoriiResponse = await axios.get("http://localhost:8080/api/categories");
+
+      const categoriiResponse = await axios.get(
+        "http://localhost:8080/api/categories"
+      );
       setCategorii(categoriiResponse.data);
     } catch (error) {
       console.error("Error adding income:", error);
@@ -77,46 +86,46 @@ const Venit = () => {
 
   return (
     <div className="container-venit">
-    <div className="venit-container">
-      <div className="header-filtre">
-        <h2>Lista Venituri</h2>
-        <div className="filters">
-          
-          <input
-            type="month"
-            value={selectedMonth}
-            onChange={(e) => setSelectedMonth(e.target.value)}
-          />
+      <div className="venit-container">
+        <div className="header-filtre">
+          <h2>Lista Venituri</h2>
+          <div className="filters">
+            <input
+              type="month"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+            />
+          </div>
         </div>
-      </div>
 
-      <button onClick={() => setIsModalOpen(true)}>Adaugă Venit</button>
-  
-      <ul>
-        {venituri.map((venit) => (
-          <li key={venit.id}>
-            {getCategoryNameById(venit.categoryId)} - {venit.amount} RON - Data: {new Date(venit.date).toLocaleDateString("ro-RO")}
-          </li>
-        ))}
-      </ul>
-  
-      <h2>Total Venituri</h2>
-      <p>{totalVenituri.toFixed(2)} RON</p>
-  
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        contentLabel="Adaugă Venit"
-        className="popup"
-        overlayClassName="overlay"
-        appElement={document.getElementById('root')}
-      >
-        <AdaugaVenitForm
-          onClose={() => setIsModalOpen(false)}
-          onAdaugaVenit={handleAdaugaVenit}
-        />
-      </Modal>
-    </div>
+        <button onClick={() => setIsModalOpen(true)}>Adaugă Venit</button>
+
+        <ul>
+          {venituri.map((venit) => (
+            <li key={venit.id}>
+              {getCategoryNameById(venit.categoryId)} - {venit.amount} RON -
+              Data: {new Date(venit.date).toLocaleDateString("ro-RO")}
+            </li>
+          ))}
+        </ul>
+
+        <h2>Total Venituri</h2>
+        <p>{totalVenituri.toFixed(2)} RON</p>
+
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          contentLabel="Adaugă Venit"
+          className="popup"
+          overlayClassName="overlay"
+          appElement={document.getElementById("root")}
+        >
+          <AdaugaVenitForm
+            onClose={() => setIsModalOpen(false)}
+            onAdaugaVenit={handleAdaugaVenit}
+          />
+        </Modal>
+      </div>
     </div>
   );
 };
