@@ -162,11 +162,6 @@ const Overview = () => {
           </ul>
         </div>
       </div>
-      <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-      <script
-        src="https://mediafiles.botpress.cloud/6338d451-2a60-4f6d-8873-9f9e99c21f11/webchat/config.js"
-        defer
-      ></script>
     </div>
   );
 };
