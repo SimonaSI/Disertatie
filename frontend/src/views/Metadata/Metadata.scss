@@ -91,6 +91,7 @@
   list-style: none;
   padding: 0;
   margin-top: 15px;
+  cursor: pointer;
 }
 
 .list-group-item {
@@ -99,4 +100,28 @@
   margin: 5px 0;
   padding: 10px;
   border-radius: 5px;
+}
+
+.close-edit-category-modal {
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.edit-metadata-modal {
+  input {
+    margin-bottom: 0;
+    height: 48px;
+    border: 1px groove;
+    border-color: #cfbdbd;
+    border-radius: 10px;
+  }
+  .edit-metadata-btn {
+    background-color: #539110;
+    color: white;
+    border: none;
+    padding: 5px 16px;
+    border-radius: 10px !important;
+    cursor: pointer;
+    margin-top: 16px;
+  }
 }

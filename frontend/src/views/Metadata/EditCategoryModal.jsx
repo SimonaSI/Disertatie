@@ -1,31 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
+import { toast } from "react-toastify";
 
-const EditCategoryModal = ({ category, onSave, onClose }) => {
-  const [name, setName] = useState(category.name);
+Modal.setAppElement("#root");
+
+const EditCategoryModal = ({ show, category, onSave, onClose }) => {
+  const [name, setName] = useState(category?.name ? category?.name : "");
+  const [newName, setNewName] = useState(category?.name ? category?.name : "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave({ ...category, name });
+    if (newName === name) {
+      toast.info("Nu ati facut nicio modificare!", {
+        toastId: "nicio-modificare",
+      });
+      return;
+    }
+    onSave({ ...category, name: newName });
     onClose();
   };
 
+  useEffect(() => {
+    setName(category?.name ? category?.name : "");
+    setNewName(category?.name ? category?.name : "");
+  }, [category]);
+
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span>
-        <h2>Modificare categorie</h2>
-        <form onSubmit={handleSubmit}>
+    <Modal
+      isOpen={show}
+      onRequestClose={onClose}
+      contentLabel="Editare metadata"
+      className="popup"
+      overlayClassName="overlay"
+      appElement={document.getElementById("root")}
+    >
+      <div className="d-flex flex-column justify-content-start align-items-center edit-metadata-modal">
+        <span
+          className="close-edit-category-modal align-self-end"
+          onClick={onClose}
+        >
+          &times;
+        </span>
+        <h2>Modificare {category?.type}</h2>
+        <form onSubmit={handleSubmit} className="mt-3">
           <label htmlFor="name">Nume categorie:</label>
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
           />
-          <button type="submit">Salvează</button>
+          <button type="submit" className="mb-4 mt-3 edit-metadata-btn">
+            Salvează
+          </button>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 

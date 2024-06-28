@@ -43,11 +43,6 @@ const Metadata = () => {
     fetchCategories();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Selected category:", selectedCategory);
-  //   console.log("Show edit modal:", showEditModal);
-  // }, [selectedCategory, showEditModal]);
-
   const handleEditCategory = (category) => {
     setSelectedCategory(category);
     setShowEditModal(true);
@@ -221,6 +216,13 @@ const Metadata = () => {
         </div>
       </Modal>
 
+      <EditCategoryModal
+        show={showEditModal}
+        category={selectedCategory}
+        onSave={saveEditedCategory}
+        onClose={handleCloseEditModal}
+      />
+
       <div className="px-5">
         <div className="met-container d-flex flex-column justify-content-center align-items-center p-3 mb-2 text-white">
           <h1>Adauga tipuri</h1>
@@ -230,20 +232,23 @@ const Metadata = () => {
           </p>
         </div>
 
-        <div className="d-flex flex-row justify-content-center align-items-center mt-4">
-          <button
-            className="btn-met m-2"
-            onClick={() => setIsModal1Open(!isModal1Open)}
-          >
-            Adaugă Tip Venit
-          </button>
-
-          <button
-            className="btn-met m-2"
-            onClick={() => setIsModal2Open(!isModal2Open)}
-          >
-            Adaugă Tip Cheltuială
-          </button>
+        <div className="d-flex flex-row justify-content-start align-items-center mt-4">
+          <div className="w-50 px-4">
+            <button
+              className="btn-met"
+              onClick={() => setIsModal1Open(!isModal1Open)}
+            >
+              Adaugă Tip Venit
+            </button>
+          </div>
+          <div className="w-50 px-4">
+            <button
+              className="btn-met"
+              onClick={() => setIsModal2Open(!isModal2Open)}
+            >
+              Adaugă Tip Cheltuială
+            </button>
+          </div>
         </div>
 
         <div className="d-flex flex-row justify-content-center align-items-start mt-4 w-100">
@@ -265,21 +270,17 @@ const Metadata = () => {
             <h2>Lista tipuri cheltuieli</h2>
             <ul className="list-group">
               {cheltuieli.map((cheltuiala) => (
-                <li key={cheltuiala.id} className="list-group-item">
+                <li
+                  key={cheltuiala.id}
+                  className="list-group-item"
+                  onClick={() => handleEditCategory(cheltuiala)}
+                >
                   {cheltuiala.name}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-
-        {showEditModal && (
-          <EditCategoryModal
-            category={selectedCategory}
-            onSave={saveEditedCategory}
-            onClose={handleCloseEditModal}
-          />
-        )}
       </div>
     </div>
   );
