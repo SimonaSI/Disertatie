@@ -86,7 +86,9 @@ const Cheltuieli = () => {
   };
 
   const getCategoryName = (categoryId) => {
-    const category = categorii.find((categorie) => categorie.id === categoryId);
+    const category = categorii.find(
+      (categorie) => categorie.id === Number(categoryId)
+    );
     return category ? category.name : "N/A";
   };
 
@@ -126,7 +128,9 @@ const Cheltuieli = () => {
           </div>
         </div>
 
-        <button onClick={() => setIsModalOpen(true)}>Adaugă Cheltuială</button>
+        <button className="mb-4" onClick={() => setIsModalOpen(true)}>
+          Adaugă Cheltuială
+        </button>
 
         <ul>
           {Array.isArray(cheltuieli) &&
@@ -151,8 +155,8 @@ const Cheltuieli = () => {
       >
         <div className="popup-content">
           <h2>Adaugă Cheltuială</h2>
-          <label>
-            Tip:
+          <div className="d-flex justify-content-center align-items-start flex-column">
+            <label>Tip:</label>
             <select
               value={tipCheltuialaModal}
               onChange={(e) => setTipCheltuialaModal(e.target.value)}
@@ -164,24 +168,23 @@ const Cheltuieli = () => {
                 </option>
               ))}
             </select>
-          </label>
-          <label>
-            Data:
+
+            <label className="mt-3">Data:</label>
             <input
               type="date"
               value={dataCheltuialaModal}
               onChange={(e) => setDataCheltuialaModal(e.target.value)}
             />
-          </label>
-          <label>
-            Valoare:
+            <label>Valoare:</label>
             <input
               type="number"
               value={valoareCheltuiala}
               onChange={(e) => setValoareCheltuiala(e.target.value)}
             />
-          </label>
-          <button onClick={handleAdaugaCheltuiala}>Adaugă Cheltuială</button>
+          </div>
+          <div className="d-flex justify-content-center align-items-center">
+            <button onClick={handleAdaugaCheltuiala}>Adaugă Cheltuială</button>
+          </div>
         </div>
       </Modal>
     </div>

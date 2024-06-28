@@ -1,129 +1,136 @@
-   .container {
-       width: 100vw;
-       height: 100vh;
+.container {
+  width: 100vw;
+  height: 100vh;
 
-       .row {
-           width: 30vw;
-           height: 60vh;
+  .row {
+    width: 30vw;
+    height: 60vh;
 
-           .formular {
-               background-color: rgba(252, 234, 220, 0.8);
-               padding: 20px;
-               width: 100%;
-               height: 100%;
-               border: 2px solid;
-               border-radius: 15px;
-               border-color: #cfbdbd;
+    .formular {
+      background-color: rgba(252, 234, 220, 0.8);
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid;
+      border-radius: 15px;
+      border-color: #cfbdbd;
 
-               .formular2 {
-                   width: 100%;
-                   height: 90%;
-                   display: flex;
-                   flex-direction: column;
-                   align-items: center;
-                   padding: 5px;
-                   margin: 5px;
-                   
-                   
+      .formular2 {
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 5px;
 
-                   .camp {
-                       width: 100%;
-                       height: 15%;
-                       background-color: white;
-                       margin: 4px;
-                       
-                       border-radius: 10px;
-                       border: 1px groove;
-                       border-color: #cfbdbd;
+        input {
+          margin-bottom: 0;
+          height: 48px;
+          border: 1px groove;
+          border-color: #cfbdbd;
+          border-radius: 10px;
+        }
 
-                       .camp1 {
-                           width: 15%;
-                           height: 100%;
-                           border-right: 1px groove;
-                           border-color: #cfbdbd;
+        .camp {
+          width: 100%;
+          height: 48px;
+          background-color: white;
+          margin: 4px;
+          border-radius: 10px;
+          border: 1px groove;
+          border-color: #cfbdbd;
 
-                       }
+          .camp1 {
+            width: 15%;
+            height: 100%;
+            border-right: 1px groove;
+            border-color: #cfbdbd;
+            margin-bottom: 0;
+          }
 
-                       .camp2 {
-                           width: 85%;
-                           height: 100%;
-                           border: none;
-                       }
-                   }
-
-
-                   .buton2 {
-                       display: flex;
-                       justify-content: center;
-                       align-items: center;
-                       width: 50%;
-                       height: 13%;
-                       background-color: #c0d8a7;
-                       border-color: white;
-                       margin: 2px;
-                       font-size: large;
-
-                   }
-
-                   .buton2:hover {
-                       background-color: #a3bb8b;
-                   }
-               }
-
-               .formular-butoane {
-                   width: 100%;
-                   height: 10%;
-                   margin: 1px;
-                   padding: 1px;
-
-                   .buton {
-                       background-color: rgb(240, 159, 102);
-                       width: 100%;
-                       height: 100%;
-                       border-color: white;
-                       margin: 2px;
-                       display: flex;
-                       justify-content: center;
-                       align-items: center;
-                       font-size: large;
-                   }
-
-                   .buton:hover {
-                       background-color: antiquewhite;
-                   }
-
-                   .buton:active {
-                       background-color: rgb(250, 203, 142);
-                   }
-               }
-
-               .buton4 {
-                   width: 50%;
-                   height: 100%;
-                   margin: 1px;
-                   padding: 1px;
-                   background-color: #fd755f;
-                   border-color: white;
-               }
-
-               .buton3 {
-                   width: 50%;
-                   height: 100%;
-                   margin: 1px;
-                   padding: 1px;
-                   background-color: #539110;
-                   border-color: white;
-
-               }
-
-               .buton3:hover {
-                background-color: #a3bb8b;
+          .camp2 {
+            width: 83%;
+            height: 100%;
+            border: none;
+            margin-bottom: 0;
+            padding-right: 0;
+            &:focus {
+              outline: none;
+              border: none;
+              box-shadow: none;
             }
+          }
+        }
 
-            .buton4:hover {
-                background-color: #f8614a;
-            }
+        .buton2 {
+          background-color: #539110;
+          color: white;
+          border: none;
+          padding: 5px 16px;
+          border-radius: 10px !important;
+          cursor: pointer;
+          margin-top: 16px;
+        }
 
-           }
-       }
-   }
+        .buton2:hover {
+          background-color: #539110d4;
+        }
+      }
+
+      .formular-butoane {
+        width: 100%;
+        height: 10%;
+        margin: 1px;
+        padding: 1px;
+
+        .buton {
+          background-color: rgb(240, 159, 102);
+          width: 100%;
+          height: 100%;
+          border-color: white;
+          margin: 2px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: large;
+        }
+
+        .buton:hover {
+          background-color: rgb(225, 134, 15);
+        }
+
+        .buton:active {
+          background-color: rgb(250, 203, 142);
+        }
+      }
+
+      .buton4 {
+        width: 50%;
+        height: 100%;
+        margin: 1px;
+        padding: 5px 16px;
+        border-radius: 10px !important;
+        background-color: #fd755f;
+        border: none;
+      }
+
+      .buton3 {
+        width: 50%;
+        height: 100%;
+        margin: 1px;
+        padding: 5px 16px;
+        border-radius: 10px !important;
+        background-color: #539110;
+        border: none;
+      }
+
+      .buton3:hover {
+        background-color: #539110d4;
+      }
+
+      .buton4:hover {
+        background-color: #f8614a;
+      }
+    }
+  }
+}

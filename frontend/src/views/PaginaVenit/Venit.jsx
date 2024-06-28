@@ -43,6 +43,7 @@ const Venit = () => {
     try {
       const response = await axios.get("http://localhost:8080/api/categories");
       setCategorii(response.data);
+      console.log(response);
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -56,11 +57,6 @@ const Venit = () => {
       );
       setVenituri([...venituri, response.data]);
       toast.success("Venit adăugat cu succes!");
-
-      const categoriiResponse = await axios.get(
-        "http://localhost:8080/api/categories"
-      );
-      setCategorii(categoriiResponse.data);
     } catch (error) {
       console.error("Error adding income:", error);
       toast.error("Eroare la adăugarea venitului!");
@@ -73,7 +69,7 @@ const Venit = () => {
   );
 
   const getCategoryNameById = (id) => {
-    const category = categorii.find((cat) => cat.id === id);
+    const category = categorii.find((cat) => cat.id === Number(id));
     return category ? category.name : "Categorie necunoscută";
   };
 
@@ -98,7 +94,9 @@ const Venit = () => {
           </div>
         </div>
 
-        <button onClick={() => setIsModalOpen(true)}>Adaugă Venit</button>
+        <button className="mb-4" onClick={() => setIsModalOpen(true)}>
+          Adaugă Venit
+        </button>
 
         <ul>
           {venituri.map((venit) => (

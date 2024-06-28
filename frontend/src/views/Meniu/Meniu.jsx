@@ -1,7 +1,7 @@
 import React from "react";
 import "./Meniu.scss";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { routes } from "../../Utils/appRoutes";
 
 const Meniu = () => {
@@ -20,26 +20,35 @@ const Meniu = () => {
 
   const handleHighlightLinkItem = (linkID) => {
     switch (linkID) {
-
       case routes.pagOverview:
-        return pageRoute === routes.pagOverview ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+        return pageRoute === routes.pagOverview
+          ? `nav-item font-size-16 font-pnr active`
+          : `nav-item font-size-16 font-pnr`;
 
       case routes.pagMetadata:
-        return pageRoute === routes.pagMetadata ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+        return pageRoute === routes.pagMetadata
+          ? `nav-item font-size-16 font-pnr active`
+          : `nav-item font-size-16 font-pnr`;
 
       case routes.pagVenit:
-        return pageRoute === routes.pagVenit ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+        return pageRoute === routes.pagVenit
+          ? `nav-item font-size-16 font-pnr active`
+          : `nav-item font-size-16 font-pnr`;
 
       case routes.pagCheltuieli:
-        return pageRoute === routes.pagCheltuieli ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+        return pageRoute === routes.pagCheltuieli
+          ? `nav-item font-size-16 font-pnr active`
+          : `nav-item font-size-16 font-pnr`;
 
       case routes.pagDatorii:
-        return pageRoute === routes.pagDatorii ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
+        return pageRoute === routes.pagDatorii
+          ? `nav-item font-size-16 font-pnr active`
+          : `nav-item font-size-16 font-pnr`;
 
       case routes.pagEducatieFinanciara:
-        return pageRoute === routes.pagEducatieFinanciara ? `nav-item font-size-16 font-pnr active` : `nav-item font-size-16 font-pnr`;
-
-
+        return pageRoute === routes.pagEducatieFinanciara
+          ? `nav-item font-size-16 font-pnr active`
+          : `nav-item font-size-16 font-pnr`;
 
       default:
         return `${inactiveLinkColor} delimitator`;
@@ -51,8 +60,8 @@ const Meniu = () => {
       <div>
         <div>
           <div className="w-100 d-flex flex-row justify-content-around align-items-center">
-            <div className="d-flex flex-row w-100 justify-content-around align-items-center">
-              <div className="nav-item d-flex justify-content-around align-items-center">
+            <div className="d-flex flex-row w-100 justify-content-around align-items-center p-3">
+              <div className=" d-flex justify-content-around align-items-center">
                 <NavLink
                   className={handleHighlightLinkItem(routes.pagOverview)}
                   to={routes.pagOverview}
@@ -63,7 +72,7 @@ const Meniu = () => {
 
               <span className="delimitator">|</span>
 
-              <div className="nav-item d-flex justify-content-around align-items-center">
+              <div className=" d-flex justify-content-around align-items-center">
                 <NavLink
                   className={handleHighlightLinkItem(routes.pagMetadata)}
                   to={routes.pagMetadata}
@@ -74,7 +83,7 @@ const Meniu = () => {
 
               <span className="delimitator">|</span>
 
-              <div className="nav-item d-flex justify-content-around align-items-center">
+              <div className=" d-flex justify-content-around align-items-center">
                 <NavLink
                   className={handleHighlightLinkItem(routes.pagVenit)}
                   to={routes.pagVenit}
@@ -85,7 +94,7 @@ const Meniu = () => {
 
               <span className="delimitator">|</span>
 
-              <div className="nav-item d-flex justify-content-around align-items-center">
+              <div className=" d-flex justify-content-around align-items-center">
                 <NavLink
                   className={handleHighlightLinkItem(routes.pagCheltuieli)}
                   to={routes.pagCheltuieli}
@@ -96,35 +105,33 @@ const Meniu = () => {
 
               <span className="delimitator">|</span>
 
-              <div className="nav-item d-flex justify-content-around align-items-center">
+              <div className=" d-flex justify-content-around align-items-center">
                 <NavLink
                   className={handleHighlightLinkItem(routes.pagDatorii)}
                   to={routes.pagDatorii}
-
                 >
                   Datorii
                 </NavLink>
               </div>
 
-              
-
               <span className="delimitator">|</span>
 
-              <div className="nav-item d-flex justify-content-around align-items-center">
-
-
+              <div className=" d-flex justify-content-around align-items-center">
                 <NavLink
-                  className={handleHighlightLinkItem(routes.pagEducatieFinanciara)}
+                  className={handleHighlightLinkItem(
+                    routes.pagEducatieFinanciara
+                  )}
                   to={routes.pagEducatieFinanciara}
                 >
                   Educatie Financiara
                 </NavLink>
-
               </div>
 
               <span className="delimitator">|</span>
 
-              <button onClick={() => handleLogout()}>Logout</button>
+              <button className="logout-btn" onClick={() => handleLogout()}>
+                Logout
+              </button>
             </div>
           </div>
         </div>
