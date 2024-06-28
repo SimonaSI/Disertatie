@@ -55,11 +55,15 @@ const Cheltuieli = () => {
         nouaCheltuiala
       );
       setCheltuieli([...cheltuieli, response.data]);
-      toast.success("Cheltuiala adăugată cu succes!");
+      toast.success("Cheltuiala adăugată cu succes!", {
+        toastId: "add-cheltuiala-succes",
+      });
 
       setIsModalOpen(false);
     } catch (error) {
-      toast.error("Eroare la adăugarea cheltuielii");
+      toast.error("Eroare la adăugarea cheltuielii", {
+        toastId: "add-cheltuiala-error",
+      });
     }
   };
 

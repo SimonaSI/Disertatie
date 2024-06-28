@@ -41,7 +41,9 @@ const AdaugaVenitForm = ({ onClose, onAdaugaVenit }) => {
       setDate(new Date().toISOString().split("T")[0]); // Reset date to current date after submission
       setSelectedTipVenit("");
     } else {
-      toast.error("Toate câmpurile sunt obligatorii!");
+      toast.error("Toate câmpurile sunt obligatorii!", {
+        toastId: "add-venit-succes",
+      });
     }
   };
 

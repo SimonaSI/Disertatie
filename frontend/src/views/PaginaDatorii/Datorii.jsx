@@ -46,7 +46,9 @@ const Datorii = () => {
           }
         );
         setDatorii([...datorii, response.data]);
-        toast.success("Datorie adăugată cu succes!");
+        toast.success("Datorie adăugată cu succes!", {
+          toastId: "add-datorie-succes",
+        });
         setDenumire("");
         setSuma("");
         setDataImprumut("");
@@ -54,10 +56,14 @@ const Datorii = () => {
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error adding debt:", error);
-        toast.error("Eroare la adăugarea datoriei!");
+        toast.error("Eroare la adăugarea datoriei!", {
+          toastId: "add-datorie-error",
+        });
       }
     } else {
-      toast.error("Toate câmpurile sunt obligatorii!");
+      toast.error("Toate câmpurile sunt obligatorii!", {
+        toastId: "add-datorie-incomplet",
+      });
     }
   };
 
@@ -78,10 +84,14 @@ const Datorii = () => {
           return datorie;
         });
       });
-      toast.success("Datorie marcată ca plătită!");
+      toast.success("Datorie marcată ca plătită!", {
+        toastId: "datorie-platita",
+      });
     } catch (error) {
       console.error("Error updating debt:", error);
-      toast.error("Eroare la marcarea datoriei ca plătită!");
+      toast.error("Eroare la marcarea datoriei ca plătită!", {
+        toastId: "datorie-platita-error",
+      });
     }
   };
 

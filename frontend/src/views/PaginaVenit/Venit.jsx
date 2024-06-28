@@ -56,10 +56,14 @@ const Venit = () => {
         nouVenit
       );
       setVenituri([...venituri, response.data]);
-      toast.success("Venit adăugat cu succes!");
+      toast.success("Venit adăugat cu succes!", {
+        toastId: "add-venit-succes",
+      });
     } catch (error) {
       console.error("Error adding income:", error);
-      toast.error("Eroare la adăugarea venitului!");
+      toast.error("Eroare la adăugarea venitului!", {
+        toastId: "add-venit-error",
+      });
     }
   };
 

@@ -71,13 +71,17 @@ const Metadata = () => {
         );
         setCheltuieli(updatedCheltuieli);
       }
-      toast.success("Categoria a fost actualizată cu succes!");
+      toast.success("Categoria a fost actualizată cu succes!", {
+        toastId: "update-categorie-succes",
+      });
     } catch (error) {
       console.error(
         "Error updating category:",
         error.response ? error.response.data : error.message
       );
-      toast.error("Eroare la actualizarea categoriei!");
+      toast.error("Eroare la actualizarea categoriei!", {
+        toastId: "update-categorie-eroare",
+      });
     }
   };
 
@@ -110,15 +114,21 @@ const Metadata = () => {
     if (tipVenit && dataIncasare) {
       try {
         await createCategory({ name: tipVenit, type: "venit" });
-        toast.success("Tip de venit adăugat cu succes!");
+        toast.success("Tip de venit adăugat cu succes!", {
+          toastId: "add-venit-succes",
+        });
         setTipVenit("");
         setDataIncasare("");
         setIsModal1Open(!isModal1Open);
       } catch (error) {
-        toast.error("Eroare la adăugarea tipului de venit!");
+        toast.error("Eroare la adăugarea tipului de venit!", {
+          toastId: "add-venit-eroare",
+        });
       }
     } else {
-      toast.error("Completați toate câmpurile pentru tipul de venit!");
+      toast.error("Completați toate câmpurile pentru tipul de venit!", {
+        toastId: "add-venit-incomplet",
+      });
     }
   };
 
@@ -130,15 +140,21 @@ const Metadata = () => {
           type: "cheltuiala",
           maxValue: valoareMaxima,
         });
-        toast.success("Tip de cheltuială adăugat cu succes!");
+        toast.success("Tip de cheltuială adăugat cu succes!", {
+          toastId: "add-cheltuiala-succes",
+        });
         setDenumireCheltuiala("");
         setValoareMaxima(0);
         setIsModal2Open(!isModal2Open);
       } catch (error) {
-        toast.error("Eroare la adăugarea tipului de cheltuială!");
+        toast.error("Eroare la adăugarea tipului de cheltuială!", {
+          toastId: "add-cheltuiala-eroare",
+        });
       }
     } else {
-      toast.error("Completați denumirea pentru tipul de cheltuială!");
+      toast.error("Completați denumirea pentru tipul de cheltuială!", {
+        toastId: "add-cheltuiala-incomplet",
+      });
     }
   };
 

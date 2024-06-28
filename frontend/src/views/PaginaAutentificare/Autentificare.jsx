@@ -51,11 +51,17 @@ const Autentificare = () => {
     } catch (error) {
       console.error("Eroare la autentificare:", error.response.data.error);
       if (error.response.status === 401) {
-        toast.error("Parolă greșită. Vă rugăm să încercați din nou.");
+        toast.error("Parolă greșită. Vă rugăm să încercați din nou.", {
+          toastId: "parola-gresita",
+        });
       } else if (error.response.status === 404) {
-        toast.error("Utilizatorul nu a fost găsit.");
+        toast.error("Utilizatorul nu a fost găsit.", {
+          toastId: "user-not-found",
+        });
       } else {
-        toast.error("Eroare la autentificare.");
+        toast.error("Eroare la autentificare.", {
+          toastId: "eroare-autentificare",
+        });
       }
     }
   };
@@ -72,7 +78,9 @@ const Autentificare = () => {
       });
       console.log("Cont creat cu succes:", response.data);
       // Afișează un mesaj de succes
-      toast.success("Cont creat cu succes!");
+      toast.success("Cont creat cu succes!", {
+        toastId: "create-account-succes",
+      });
 
       // Resetează starea formData pentru a șterge valorile introduse în formular
       setFormData({
@@ -87,7 +95,9 @@ const Autentificare = () => {
     } catch (error) {
       console.error("Eroare la crearea contului:", error.response.data.error);
       // Aici poți trata eroarea și afișa un mesaj corespunzător
-      toast.error("Eroare la crearea contului.");
+      toast.error("Eroare la crearea contului.", {
+        toastId: "create-account-error",
+      });
     }
   };
 
