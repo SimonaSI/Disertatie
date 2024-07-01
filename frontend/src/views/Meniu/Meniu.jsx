@@ -16,6 +16,7 @@ const Meniu = () => {
     localStorage.removeItem("userId");
     navigate(routes.autentificare);
     toast.success("V-ati delogat cu succes!", { toastId: "sdkhfsjkdd" });
+    window.location.reload();
   };
 
   const handleHighlightLinkItem = (linkID) => {

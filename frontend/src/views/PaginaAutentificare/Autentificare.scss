@@ -28,7 +28,8 @@
           height: 48px;
           border: 1px groove;
           border-color: #cfbdbd;
-          border-radius: 10px;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
         }
 
         .camp {
@@ -41,7 +42,7 @@
           border-color: #cfbdbd;
 
           .camp1 {
-            width: 15%;
+            // width: 15%;
             height: 100%;
             border-right: 1px groove;
             border-color: #cfbdbd;
@@ -49,7 +50,7 @@
           }
 
           .camp2 {
-            width: 83%;
+            // width: 85%;
             height: 100%;
             border: none;
             margin-bottom: 0;
