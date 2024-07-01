@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Modal from "react-modal";
 import AdaugaVenitForm from "./AdaugaVenitForm";
 import axios from "axios";
+import EditVenitForm from "./EditVenitForm";
 
 Modal.setAppElement("#root");
 
@@ -11,7 +12,9 @@ const Venit = () => {
   const [venituri, setVenituri] = useState([]);
   const [categorii, setCategorii] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
+  const [itemToEdit, setItemToEdit] = useState({});
 
   const userId = localStorage.getItem("userId");
 
@@ -43,7 +46,6 @@ const Venit = () => {
     try {
       const response = await axios.get("http://localhost:8080/api/categories");
       setCategorii(response.data);
-      console.log(response);
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -59,10 +61,30 @@ const Venit = () => {
       toast.success("Venit adăugat cu succes!", {
         toastId: "add-venit-succes",
       });
+      fetchCategorii();
     } catch (error) {
       console.error("Error adding income:", error);
       toast.error("Eroare la adăugarea venitului!", {
         toastId: "add-venit-error",
+      });
+    }
+  };
+
+  const handleEditVenit = async (editedVenit) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/incomes/${itemToEdit.id}`,
+        editedVenit
+      );
+      setVenituri([...venituri, response.data]);
+      toast.success("Venit editat cu succes!", {
+        toastId: "edit-venit-succes",
+      });
+      fetchVenituri();
+    } catch (error) {
+      console.error("Error editing income:", error);
+      toast.error("Eroare la editare venitului!", {
+        toastId: "edit-venit-error",
       });
     }
   };
@@ -104,7 +126,14 @@ const Venit = () => {
 
         <ul>
           {venituri.map((venit) => (
-            <li key={venit.id}>
+            <li
+              style={{ cursor: "pointer" }}
+              key={venit.id}
+              onClick={() => {
+                setItemToEdit(venit);
+                setIsEditModalOpen(!isEditModalOpen);
+              }}
+            >
               {getCategoryNameById(venit.categoryId)} - {venit.amount} RON -
               Data: {new Date(venit.date).toLocaleDateString("ro-RO")}
             </li>
@@ -125,6 +154,20 @@ const Venit = () => {
           <AdaugaVenitForm
             onClose={() => setIsModalOpen(false)}
             onAdaugaVenit={handleAdaugaVenit}
+          />
+        </Modal>
+        <Modal
+          isOpen={isEditModalOpen}
+          onRequestClose={() => setIsEditModalOpen(!isEditModalOpen)}
+          contentLabel="Editare Venit"
+          className="popup"
+          overlayClassName="overlay"
+          appElement={document.getElementById("root")}
+        >
+          <EditVenitForm
+            onClose={() => setIsEditModalOpen(!isEditModalOpen)}
+            onEditVenit={handleEditVenit}
+            itemToEdit={itemToEdit}
           />
         </Modal>
       </div>
