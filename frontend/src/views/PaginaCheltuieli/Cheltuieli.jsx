@@ -3,6 +3,7 @@ import "./Cheltuieli.scss";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
 import axios from "axios";
+import EditCheltuieliForm from "./EditCheltuieliForm";
 
 const Cheltuieli = () => {
   const [cheltuieli, setCheltuieli] = useState([]);
@@ -15,19 +16,28 @@ const Cheltuieli = () => {
     new Date().toISOString().split("T")[0]
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [itemToEdit, setItemToEdit] = useState({});
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const userId = localStorage.getItem("userId");
 
+  const fetchCheltuieli = async () => {
+    try {
+      const expensesResponse = await axios.get(
+        `http://localhost:8080/api/users/${userId}/expenses`
+      );
+      setCheltuieli(
+        Array.isArray(expensesResponse.data) ? expensesResponse.data : []
+      );
+    } catch (error) {
+      console.error("Eroare la încărcarea datelor:", error.message);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
+      await fetchCheltuieli();
       try {
-        const expensesResponse = await axios.get(
-          `http://localhost:8080/api/users/${userId}/expenses`
-        );
-        setCheltuieli(
-          Array.isArray(expensesResponse.data) ? expensesResponse.data : []
-        );
-
         const categoriesResponse = await axios.get(
           `http://localhost:8080/api/categories/expense/${userId}`
         );
@@ -58,11 +68,33 @@ const Cheltuieli = () => {
       toast.success("Cheltuiala adăugată cu succes!", {
         toastId: "add-cheltuiala-succes",
       });
+      setValoareCheltuiala("");
+      setDataCheltuialaModal(new Date().toISOString().split("T")[0]); // Reset date to current date after submission
+      setTipCheltuialaModal("");
 
       setIsModalOpen(false);
     } catch (error) {
       toast.error("Eroare la adăugarea cheltuielii", {
         toastId: "add-cheltuiala-error",
+      });
+    }
+  };
+
+  const handleEditCheltuiala = async (editedCheltuiala) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/expenses/${itemToEdit.id}`,
+        editedCheltuiala
+      );
+      setCheltuieli([...cheltuieli, response.data]);
+      toast.success("Cheltuiala editat cu succes!", {
+        toastId: "edit-cheltuiala-succes",
+      });
+      fetchCheltuieli();
+    } catch (error) {
+      console.error("Error editing income:", error);
+      toast.error("Eroare la editare cheltuielii!", {
+        toastId: "edit-cheltuiala-error",
       });
     }
   };
@@ -139,7 +171,14 @@ const Cheltuieli = () => {
         <ul>
           {Array.isArray(cheltuieli) &&
             filterCheltuieli().map((cheltuiala) => (
-              <li key={cheltuiala.id}>
+              <li
+                key={cheltuiala.id}
+                onClick={() => {
+                  setItemToEdit(cheltuiala);
+                  setIsEditModalOpen(!isEditModalOpen);
+                }}
+                style={{ cursor: "pointer" }}
+              >
                 {getCategoryName(cheltuiala.categoryId)} - {cheltuiala.amount}{" "}
                 RON - {new Date(cheltuiala.date).toLocaleDateString("ro-RO")}
               </li>
@@ -190,6 +229,21 @@ const Cheltuieli = () => {
             <button onClick={handleAdaugaCheltuiala}>Adaugă Cheltuială</button>
           </div>
         </div>
+      </Modal>
+
+      <Modal
+        isOpen={isEditModalOpen}
+        onRequestClose={() => setIsEditModalOpen(!isEditModalOpen)}
+        contentLabel="Editare Venit"
+        className="popup"
+        overlayClassName="overlay"
+        appElement={document.getElementById("root")}
+      >
+        <EditCheltuieliForm
+          onClose={() => setIsEditModalOpen(!isEditModalOpen)}
+          onEditCheltuiala={handleEditCheltuiala}
+          itemToEdit={itemToEdit}
+        />
       </Modal>
     </div>
   );
