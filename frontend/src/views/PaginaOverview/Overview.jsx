@@ -11,6 +11,8 @@ const Overview = () => {
   const userId = localStorage.getItem("userId");
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
+  const [categorii, setCategorii] = useState([]);
+  const [venituri, setVenituri] = useState([]);
 
   const [expenseData, setExpenseData] = useState([]);
   const [totalAmountExpenses, setTotalAmountExpenses] = useState(0);
@@ -36,6 +38,59 @@ const Overview = () => {
     { value: 11, label: "Noiembrie" },
     { value: 12, label: "Decembrie" },
   ];
+
+  const fetchCategorii = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/categories");
+      setCategorii(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+  const fetchVenituri = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/incomes/user/${userId}`
+      );
+
+      setVenituri(response.data);
+    } catch (error) {
+      console.error("Error fetching incomes:", error);
+    }
+  };
+
+  const getVenituriPtNotificari = () => {
+    const array = [];
+
+    venituri?.map((venit) => {
+      let today = new Date();
+      let venitDate = new Date(venit.date);
+
+      // Create a date that is 4 days after the current date
+      const fourDaysLater = new Date(today);
+      fourDaysLater.setDate(today.getDate() + 4);
+
+      // Compare given date with fourDaysLater date
+      if (venitDate > fourDaysLater) {
+        array.push(venit);
+      }
+    });
+    return array;
+  };
+
+  const getCheltuieliPtNotificari = () => {
+    const array = [];
+
+    expenseData?.map((expense) => {
+      const getCategoryMaxValue = categorii?.find(
+        (el) => Number(el.id) === Number(expense.categoryId)
+      )?.maxValue;
+      if (getCategoryMaxValue < expense.totalAmount) {
+        array.push(expense);
+      }
+    });
+    return array;
+  };
 
   useEffect(() => {
     const fetchIncomeData = async () => {
@@ -86,6 +141,16 @@ const Overview = () => {
       fetchExpenseData();
     }
   }, [userId, month, year]);
+
+  useEffect(() => {
+    fetchCategorii();
+    fetchVenituri();
+  }, []);
+
+  const getCategoryById = (id) => {
+    const category = categorii.find((cat) => cat.id === Number(id));
+    return category ? category : "Categorie necunoscută";
+  };
 
   return (
     <div className="mx-auto mt-5" style={{ maxWidth: "90vw" }}>
@@ -144,9 +209,23 @@ const Overview = () => {
             <strong>Notificari: </strong>{" "}
           </p>
           <ul>
-            <li style={{ color: "#1838eb" }}>
-              In curand vei incasa 7000 lei din Salarii
-            </li>
+            {getVenituriPtNotificari()?.length > 0 ? (
+              <li style={{ color: "#1838eb" }}>
+                {" "}
+                In curand vei incasa{" "}
+                {getVenituriPtNotificari()?.map(
+                  (venit, index) =>
+                    `${venit.amount} lei din ${
+                      getCategoryById(venit.categoryId)?.name
+                    }${
+                      getVenituriPtNotificari()?.length > 1 &&
+                      index < getVenituriPtNotificari()?.length - 1
+                        ? ", "
+                        : ""
+                    }`
+                )}
+              </li>
+            ) : null}
           </ul>
           <p className="mb-0" style={{ color: "#e90707" }}>
             <strong>Alerte: </strong>{" "}
@@ -155,10 +234,37 @@ const Overview = () => {
             <li>
               Data scadenta pentru datoria "Imprumut Claudia" a fost depasita.
             </li>
-            <li>
-              Ai grija, pentru categoria Mancare ai cheltuit o valoare mai mare
-              decat ti-ai propus!
-            </li>
+            {getCheltuieliPtNotificari()?.length === 1 ? (
+              <li>
+                Ai grija, pentru categoria{" "}
+                {
+                  <strong>
+                    {
+                      getCategoryById(
+                        getCheltuieliPtNotificari()[0]?.categoryId
+                      )?.name
+                    }
+                  </strong>
+                }{" "}
+                ai cheltuit o valoare mai mare decat ti-ai propus!
+              </li>
+            ) : getCheltuieliPtNotificari()?.length > 1 ? (
+              <li>
+                Ai grija, pentru categoriile{" "}
+                {getCheltuieliPtNotificari()?.map((cheltuiala, index) => (
+                  <span key={index}>
+                    <strong>{cheltuiala?.Category?.name}</strong>
+
+                    <span>
+                      {index < getCheltuieliPtNotificari()?.length - 1
+                        ? ", "
+                        : ""}
+                    </span>
+                  </span>
+                ))}{" "}
+                ai cheltuit o valoare mai mare decat ti-ai propus!
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
